@@ -1,0 +1,197 @@
+version: "2.0"
+
+nlu:
+
+# 1. Greet
+- intent: greet
+  examples: |
+    - hello
+    - hi
+    - hey there
+    - good morning
+    - good evening
+    - is anyone there?
+    - greetings
+    - yo
+    - namaste
+
+# 2. Goodbye
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you later
+    - take care
+    - catch you later
+    - talk to you soon
+    - peace out
+    - I’m done
+
+# 3. Ask Check-in/Check-out
+- intent: ask_checkin_checkout
+  examples: |
+    - What are the check-in and check-out timings?
+    - When can I check in?
+    - What time is check-out?
+    - Is early check-in allowed?
+    - Can I get a late checkout?
+    - When does the check-in start?
+
+# 4. Ask Room Types
+- intent: ask_room_types
+  examples: |
+    - What types of rooms do you have?
+    - Tell me about your rooms.
+    - Are suites available?
+    - Do you offer family rooms?
+    - Is there a deluxe room?
+    - Do you have standard rooms?
+
+# 5. Ask Room Availability
+- intent: ask_room_availability
+  examples: |
+    - Are rooms available?
+    - Can I book a room now?
+    - Is there any vacancy?
+    - Do you have free rooms today?
+    - Can I stay tonight?
+
+# 6. Ask Room Pricing
+- intent: ask_room_pricing
+  examples: |
+    - How much does a room cost?
+    - What are the room charges?
+    - Tell me the pricing plans.
+    - Price of deluxe room?
+    - Rate for a suite per night?
+    - What is the cost of executive room?
+
+# 7. Ask Amenities
+- intent: ask_amenities
+  examples: |
+    - What facilities do you offer?
+    - Do you have a gym?
+    - Is there a swimming pool?
+    - What amenities come with the room?
+    - Do you have Wi-Fi and TV?
+
+# 8. Ask Free Services
+- intent: ask_free_services
+  examples: |
+    - What free services do you offer?
+    - Is breakfast included?
+    - Do I get free Wi-Fi?
+    - Are toiletries complimentary?
+    - Any welcome drink?
+
+# 9. Ask Contact Info
+- intent: ask_contact
+  examples: |
+    - How can I contact reception?
+    - I need the concierge number.
+    - Give me front desk contact.
+    - What's the phone number?
+    - How to reach out to staff?
+
+# 10. Ask Food Options
+- intent: ask_food
+  examples: |
+    - Do you serve food?
+    - Is vegetarian food available?
+    - What's on the menu?
+    - Any Indian cuisine?
+    - Is there dinner service?
+
+# 11. Ask Payment Methods
+- intent: ask_payment_methods
+  examples: |
+    - Do you accept credit cards?
+    - Can I pay via UPI?
+    - What payment options do you support?
+    - Do you allow cash payment?
+    - Is online payment available?
+
+# 12. Ask Spa Booking
+- intent: book_addon_spa
+  examples: |
+    - I want to book a spa
+    - Can I get a massage?
+    - Schedule a spa session
+    - Book aromatherapy
+    - Hot stone massage please
+    - I want a spa appointment
+
+# 13. Ask for Drinks
+- intent: book_addon_beverage
+  examples: |
+    - I want a mocktail
+    - Can I get juice?
+    - I’d like a drink
+    - Order fresh juice
+    - Give me a mocktail please
+
+# 14. Ask for Food Add-ons
+- intent: book_addon_food
+  examples: |
+    - Give me a cheese platter
+    - Can I have chocolate brownie?
+    - I want to eat something
+    - Order dessert
+    - Get me food add-ons
+
+# 15. Book Room
+- intent: book_room
+  examples: |
+    - I want to book a room
+    - Book a deluxe room
+    - Reserve a family room
+    - I need a room for tonight
+    - Please book me a suite
+    - I want to stay 2 nights
+
+# 16. Payment Intent
+- intent: payment_request
+  examples: |
+    - I want to make a payment
+    - How can I pay?
+    - Give me the payment link
+    - Pay for room
+    - I need to pay online
+    - Proceed to pay
+    - How to book and pay?
+
+# 17. Ask Wi-Fi
+- intent: ask_wifi
+  examples: |
+    - Is Wi-Fi free?
+    - Do you provide internet?
+    - What's the Wi-Fi password?
+    - Can I connect to Wi-Fi?
+    - Is Wi-Fi available in rooms?
+
+# 18. Ask Transport
+- intent: ask_transport
+  examples: |
+    - Do you provide airport pickup?
+    - Is there a cab facility?
+    - Can I get transport?
+    - Shuttle service available?
+    - Pick up from the station?
+
+# 19. Ask Cancellation Policy
+- intent: ask_cancellation
+  examples: |
+    - What is your cancellation policy?
+    - Can I cancel my booking?
+    - Is refund available?
+    - What if I don’t show up?
+    - How to cancel a reservation?
+
+# 20. Fallback / Out of Scope
+- intent: out_of_scope
+  examples: |
+    - Tell me a joke
+    - What is the meaning of life?
+    - Who won the match?
+    - Are you human?
+    - Say something funny

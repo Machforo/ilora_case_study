@@ -1,0 +1,115 @@
+question,intent
+hello,greet
+hi,greet
+hey there,greet
+good morning,greet
+good evening,greet
+is anyone there?,greet
+greetings,greet
+yo,greet
+namaste,greet
+bye,goodbye
+goodbye,goodbye
+see you later,goodbye
+take care,goodbye
+catch you later,goodbye
+talk to you soon,goodbye
+peace out,goodbye
+I’m done,goodbye
+What are the check-in and check-out timings?,ask_checkin_checkout
+When can I check in?,ask_checkin_checkout
+What time is check-out?,ask_checkin_checkout
+Is early check-in allowed?,ask_checkin_checkout
+Can I get a late checkout?,ask_checkin_checkout
+When does the check-in start?,ask_checkin_checkout
+What types of rooms do you have?,ask_room_types
+Tell me about your rooms.,ask_room_types
+Are suites available?,ask_room_types
+Do you offer family rooms?,ask_room_types
+Is there a deluxe room?,ask_room_types
+Do you have standard rooms?,ask_room_types
+Are rooms available?,ask_room_availability
+Can I book a room now?,ask_room_availability
+Is there any vacancy?,ask_room_availability
+Do you have free rooms today?,ask_room_availability
+Can I stay tonight?,ask_room_availability
+How much does a room cost?,ask_room_pricing
+What are the room charges?,ask_room_pricing
+Tell me the pricing plans.,ask_room_pricing
+Price of deluxe room?,ask_room_pricing
+Rate for a suite per night?,ask_room_pricing
+What is the cost of executive room?,ask_room_pricing
+What facilities do you offer?,ask_amenities
+Do you have a gym?,ask_amenities
+Is there a swimming pool?,ask_amenities
+What amenities come with the room?,ask_amenities
+Do you have Wi-Fi and TV?,ask_amenities
+What free services do you offer?,ask_free_services
+Is breakfast included?,ask_free_services
+Do I get free Wi-Fi?,ask_free_services
+Are toiletries complimentary?,ask_free_services
+Any welcome drink?,ask_free_services
+How can I contact reception?,ask_contact
+I need the concierge number.,ask_contact
+Give me front desk contact.,ask_contact
+What's the phone number?,ask_contact
+How to reach out to staff?,ask_contact
+Do you serve food?,ask_food
+Is vegetarian food available?,ask_food
+What's on the menu?,ask_food
+Any Indian cuisine?,ask_food
+Is there dinner service?,ask_food
+Do you accept credit cards?,ask_payment_methods
+Can I pay via UPI?,ask_payment_methods
+What payment options do you support?,ask_payment_methods
+Do you allow cash payment?,ask_payment_methods
+Is online payment available?,ask_payment_methods
+I want to book a spa,book_addon_spa
+Can I get a massage?,book_addon_spa
+Schedule a spa session,book_addon_spa
+Book aromatherapy,book_addon_spa
+Hot stone massage please,book_addon_spa
+I want a spa appointment,book_addon_spa
+I want a mocktail,book_addon_beverage
+Can I get juice?,book_addon_beverage
+I’d like a drink,book_addon_beverage
+Order fresh juice,book_addon_beverage
+Give me a mocktail please,book_addon_beverage
+Give me a cheese platter,book_addon_food
+Can I have chocolate brownie?,book_addon_food
+I want to eat something,book_addon_food
+Order dessert,book_addon_food
+Get me food add-ons,book_addon_food
+I want to book a room,book_room
+Book a deluxe room,book_room
+Reserve a family room,book_room
+I need a room for tonight,book_room
+Please book me a suite,book_room
+I want to stay 2 nights,book_room
+I want to make a payment,payment_request
+How can I pay?,payment_request
+Give me the payment link,payment_request
+Pay for room,payment_request
+I need to pay online,payment_request
+Proceed to pay,payment_request
+How to book and pay?,payment_request
+Is Wi-Fi free?,ask_wifi
+Do you provide internet?,ask_wifi
+What's the Wi-Fi password?,ask_wifi
+Can I connect to Wi-Fi?,ask_wifi
+Is Wi-Fi available in rooms?,ask_wifi
+Do you provide airport pickup?,ask_transport
+Is there a cab facility?,ask_transport
+Can I get transport?,ask_transport
+Shuttle service available?,ask_transport
+Pick up from the station?,ask_transport
+What is your cancellation policy?,ask_cancellation
+Can I cancel my booking?,ask_cancellation
+Is refund available?,ask_cancellation
+What if I don’t show up?,ask_cancellation
+How to cancel a reservation?,ask_cancellation
+Tell me a joke,out_of_scope
+What is the meaning of life?,out_of_scope
+Who won the match?,out_of_scope
+Are you human?,out_of_scope
+Say something funny,out_of_scope

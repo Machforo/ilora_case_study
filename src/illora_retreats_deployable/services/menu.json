@@ -1,0 +1,124 @@
+{
+  "spa": {
+    "spa_massage": 3000,
+    "spa_aromatherapy": 3500,
+    "spa_hot_stone": 4000
+  },
+  "drinks": {
+    "coke": 250,
+    "coke_zero": 250,
+    "sprite": 250,
+    "fanta_orange": 250,
+    "ginger_ale": 250,
+    "bitter_lemon": 250,
+    "soda_water": 250,
+    "tonic_water": 250,
+    "sparkling_water": 250
+  },
+  "juices": {
+    "apple_juice": 500,
+    "pineapple_juice": 500,
+    "mango_juice": 500,
+    "watermelon_juice": 500,
+    "orange_juice": 500,
+    "mixed_fruit_juice": 500,
+    "mixed_vegetable_juice": 500
+  },
+  "mocktails": {
+    "chilled_colada": 1500,
+    "spiced_passion_pulp": 925,
+    "melon_popper": 925,
+    "ginger_spritz": 925,
+    "cranberry_sangria": 925,
+    "virgin_mojito": 925,
+    "passion_mojito": 925,
+    "cherry_crush": 925,
+    "savannah_cooler": 925,
+    "summer_sunset": 925,
+    "bear_slush": 925,
+    "wild_safari": 925,
+    "tofi_cooler": 925
+  },
+  "milkshakes": {
+    "strawberry_shake": 595,
+    "vanilla_shake": 595,
+    "chocolate_shake": 595,
+    "espresso_shake": 595,
+    "mocha_shake": 595
+  },
+  "smoothies": {
+    "green_goddess": 595,
+    "berrylicious": 595,
+    "banana_peanut": 595,
+    "mara_tropical": 595,
+    "tripple_b": 595
+  },
+  "beers": {
+    "heineken": 500,
+    "guinness": 500,
+    "whitecap_lager": 500,
+    "tusker_lager": 500,
+    "corona_extra": 500,
+    "savannah_cider": 500,
+    "tusker_cider": 500
+  },
+  "cocktails": {
+    "cosmopolitan": 1275,
+    "hot_toddy": 1275,
+    "spicy_mango_mojito": 1275,
+    "manhattan": 1275,
+    "dawa": 1275,
+    "gin_fizz": 1275,
+    "fireside_negroni": 1275,
+    "passion_mojito_cocktail": 1275,
+    "ilora_special_punch": 1275,
+    "ilora_purple_rain": 1275,
+    "moran_mimosa": 1275,
+    "giraffe_long_tongue": 1275,
+    "crocodile_crush": 1275,
+    "bahati_sunset": 1275,
+    "bushfire_camp": 1275,
+    "drive_away_espresso": 1275
+  },
+  "savory_bites": {
+    "bbq_sliders": 595,
+    "masai_spiced_nuts": 510,
+    "truffle_parmesan_fries": 510,
+    "salt_pepper_calamari": 680,
+    "beef_chicken_satay": 850,
+    "cheesy_meatballs": 765,
+    "pineapple_chicken_lollipops": 765,
+    "mbuzi_choma_galette": 935,
+    "chicken_candy": 765,
+    "lamb_kebabs": 850,
+    "stuffed_onion": 595,
+    "devil_horse_whip": 680,
+    "sweet_chili_spare_ribs": 935,
+    "choma_nyama_tacos": 680,
+    "stuffed_mini_peppers": 595,
+    "cheese_spinach_turnovers": 595,
+    "falafel_bites": 595,
+    "bruschetta_trio": 765,
+    "chips_avo_dip": 595,
+    "sopaipilla_olives": 595,
+    "twisted_cheese_bread_sticks": 595,
+    "cheese_platter": 765,
+    "vegetable_skewers": 765,
+    "stuffed_cabbage_rolls": 680
+  },
+  "sweet_treats": {
+    "chocolate_fondue": 595,
+    "mini_cheesecakes": 510,
+    "kenyan_coffee_tiramisu": 595,
+    "fruit_tartlets": 595,
+    "macarons": 680,
+    "banana_spring_roll": 510,
+    "chocolate_brownie": 510,
+    "berry_sorbet_shots": 595
+  },
+  "complimentary": [
+    "tea", "coffee", "earl_grey", "green_tea", "espresso", "latte",
+    "americano", "cappuccino", "masala_tea", "jasmine_tea", "darjeeling",
+    "hibiscus", "chamomile", "english_breakfast"
+  ]
+}

@@ -1,0 +1,16 @@
+[server]
+# Change default port
+port = 8501
+# Allow access from other machines (important for deployment)
+address = "0.0.0.0"
+headless = true
+enableCORS = false
+enableXsrfProtection = false
+
+[theme]
+base="light"
+primaryColor="#28a745"          # main brand green (matches your form button)
+backgroundColor="rgba(157, 229, 247, 1)"       # dark background (helps with contrast if no bg image loads)
+secondaryBackgroundColor="#2d3546ff"  # sidebar & containers
+textColor="#ffffff"             # white text for readability
+font="sans serif"               # clean and modern font

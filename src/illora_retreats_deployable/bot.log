@@ -1,0 +1,49 @@
+2025-08-20 19:14:45,187 | VectorStoreService | INFO | Loaded 1494 documents from data\qa_pairs.csv
+2025-08-20 19:15:08,523 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-20 19:15:09,721 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:15:12,167 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:15:14,452 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:17:31,708 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'Hii': Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-08-20 19:17:31,710 | web | INFO | Web | aeeecf4f-8943-4754-9199-e95061155f61 | Hii | We're sorry, there was an issue while assisting you. Please feel free to ask again or contact the ILLORA RETREATS front desk for immediate help. | Intent: greet
+2025-08-20 19:17:50,678 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'Where is illora retreats located': Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-08-20 19:17:50,678 | web | INFO | Web | aeeecf4f-8943-4754-9199-e95061155f61 | Where is illora retreats located | We're sorry, there was an issue while assisting you. Please feel free to ask again or contact the ILLORA RETREATS front desk for immediate help. | Intent: greet
+2025-08-20 19:18:05,681 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'what is it': Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-08-20 19:18:05,682 | web | INFO | Web | aeeecf4f-8943-4754-9199-e95061155f61 | what is it | We're sorry, there was an issue while assisting you. Please feel free to ask again or contact the ILLORA RETREATS front desk for immediate help. | Intent: ask_cancellation
+2025-08-20 19:27:52,211 | VectorStoreService | INFO | Loaded 1494 documents from data\qa_pairs.csv
+2025-08-20 19:28:06,859 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-20 19:28:06,861 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:28:08,880 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:28:10,736 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:28:31,350 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'hello': Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-08-20 19:40:45,674 | VectorStoreService | INFO | Loaded 1494 documents from data\qa_pairs.csv
+2025-08-20 19:40:54,973 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-20 19:40:55,658 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:40:57,112 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:40:58,531 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:41:09,661 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'hello': Error code: 401 - {'error': {'message': 'Incorrect API key provided: gsk_22yN********************************************7aUo. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-20 19:50:26,184 | VectorStoreService | INFO | Loaded 1494 documents from data\qa_pairs.csv
+2025-08-20 19:50:35,870 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-20 19:50:36,517 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:50:37,867 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:50:39,184 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:50:52,992 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-08-20 19:51:25,547 | QAAgent | INFO | Processed query at ILLORA RETREATS: Where is Ilora located?
+2025-08-20 19:52:08,464 | QAAgent | INFO | Processed query at ILLORA RETREATS: What are the places nearby the hotel?
+2025-08-20 19:52:38,845 | QAAgent | INFO | Processed query at ILLORA RETREATS: Can you let me know what are the types of room available in your hotel
+2025-08-20 19:53:05,309 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to order a coffe
+2025-08-20 19:54:03,044 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want a espresso in my room
+2025-08-20 19:54:17,967 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want it right away
+2025-08-20 19:54:41,038 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want my coffee right away
+2025-08-20 19:55:01,187 | QAAgent | INFO | Processed query at ILLORA RETREATS: Espresso
+2025-08-20 19:55:20,623 | QAAgent | INFO | Processed query at ILLORA RETREATS: Can you give me more information about the hotel
+2025-08-20 19:56:00,671 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:57:00,072 | QAAgent | INFO | Processed query at ILLORA RETREATS: heyy
+2025-08-20 19:57:17,694 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to know details of the hotek
+2025-08-20 19:59:43,147 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:59:44,590 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:59:45,903 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 20:36:51,165 | VectorStoreService | INFO | Loaded 804 documents from data\qa_pairs.csv
+2025-08-20 20:37:20,247 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-20 20:37:24,397 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 20:37:29,241 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 20:37:33,483 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.

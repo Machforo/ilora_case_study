@@ -1,0 +1,564 @@
+2025-08-20 19:14:45,187 | VectorStoreService | INFO | Loaded 1494 documents from data\qa_pairs.csv
+2025-08-20 19:15:08,523 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-20 19:15:09,721 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:15:12,167 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:15:14,452 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:17:31,708 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'Hii': Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-08-20 19:17:31,710 | web | INFO | Web | aeeecf4f-8943-4754-9199-e95061155f61 | Hii | We're sorry, there was an issue while assisting you. Please feel free to ask again or contact the ILLORA RETREATS front desk for immediate help. | Intent: greet
+2025-08-20 19:17:50,678 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'Where is illora retreats located': Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-08-20 19:17:50,678 | web | INFO | Web | aeeecf4f-8943-4754-9199-e95061155f61 | Where is illora retreats located | We're sorry, there was an issue while assisting you. Please feel free to ask again or contact the ILLORA RETREATS front desk for immediate help. | Intent: greet
+2025-08-20 19:18:05,681 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'what is it': Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-08-20 19:18:05,682 | web | INFO | Web | aeeecf4f-8943-4754-9199-e95061155f61 | what is it | We're sorry, there was an issue while assisting you. Please feel free to ask again or contact the ILLORA RETREATS front desk for immediate help. | Intent: ask_cancellation
+2025-08-20 19:27:52,211 | VectorStoreService | INFO | Loaded 1494 documents from data\qa_pairs.csv
+2025-08-20 19:28:06,859 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-20 19:28:06,861 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:28:08,880 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:28:10,736 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:28:31,350 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'hello': Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-08-20 19:40:45,674 | VectorStoreService | INFO | Loaded 1494 documents from data\qa_pairs.csv
+2025-08-20 19:40:54,973 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-20 19:40:55,658 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:40:57,112 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:40:58,531 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:41:09,661 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'hello': Error code: 401 - {'error': {'message': 'Incorrect API key provided: gsk_22yN********************************************7aUo. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-08-20 19:50:26,184 | VectorStoreService | INFO | Loaded 1494 documents from data\qa_pairs.csv
+2025-08-20 19:50:35,870 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-20 19:50:36,517 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:50:37,867 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:50:39,184 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:50:52,992 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-08-20 19:51:25,547 | QAAgent | INFO | Processed query at ILLORA RETREATS: Where is Ilora located?
+2025-08-20 19:52:08,464 | QAAgent | INFO | Processed query at ILLORA RETREATS: What are the places nearby the hotel?
+2025-08-20 19:52:38,845 | QAAgent | INFO | Processed query at ILLORA RETREATS: Can you let me know what are the types of room available in your hotel
+2025-08-20 19:53:05,309 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to order a coffe
+2025-08-20 19:54:03,044 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want a espresso in my room
+2025-08-20 19:54:17,967 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want it right away
+2025-08-20 19:54:41,038 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want my coffee right away
+2025-08-20 19:55:01,187 | QAAgent | INFO | Processed query at ILLORA RETREATS: Espresso
+2025-08-20 19:55:20,623 | QAAgent | INFO | Processed query at ILLORA RETREATS: Can you give me more information about the hotel
+2025-08-20 19:56:00,671 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:57:00,072 | QAAgent | INFO | Processed query at ILLORA RETREATS: heyy
+2025-08-20 19:57:17,694 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to know details of the hotek
+2025-08-20 19:59:43,147 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:59:44,590 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 19:59:45,903 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 20:36:51,165 | VectorStoreService | INFO | Loaded 804 documents from data\qa_pairs.csv
+2025-08-20 20:37:20,247 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-20 20:37:24,397 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 20:37:29,241 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 20:37:33,483 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 21:02:14,625 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 21:02:16,703 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 21:02:18,496 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-20 21:04:10,744 | QAAgent | INFO | Processed query at ILLORA RETREATS: Hello
+2025-08-20 21:04:51,048 | QAAgent | INFO | Processed query at ILLORA RETREATS: Give me details about the hotel
+2025-08-22 10:19:54,516 | VectorStoreService | INFO | Loaded 804 documents from data\qa_pairs.csv
+2025-08-22 10:20:10,171 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-22 10:20:10,172 | QAAgent | ERROR | Error initializing ILLORA RETREATS QA agent: type object 'Config' has no attribute 'GITHUB_TOKEN'
+2025-08-22 10:21:24,847 | VectorStoreService | INFO | Loaded 804 documents from data\qa_pairs.csv
+2025-08-22 10:21:35,853 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-22 10:21:35,853 | QAAgent | ERROR | Error initializing ILLORA RETREATS QA agent: type object 'Config' has no attribute 'GITHUB_TOKEN'
+2025-08-22 10:22:13,580 | VectorStoreService | INFO | Loaded 804 documents from data\qa_pairs.csv
+2025-08-22 10:22:24,656 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-22 10:22:24,690 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:22:27,295 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:22:29,332 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:22:50,433 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'hello': (unavailable_model) Unavailable model: gpt-5-nano
+Code: unavailable_model
+Message: Unavailable model: gpt-5-nano
+2025-08-22 10:25:05,644 | VectorStoreService | INFO | Loaded 804 documents from data\qa_pairs.csv
+2025-08-22 10:25:16,349 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-22 10:25:16,387 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:25:18,654 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:25:20,618 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:25:32,748 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'hello': (unavailable_model) Unavailable model: gpt-5
+Code: unavailable_model
+Message: Unavailable model: gpt-5
+2025-08-22 10:27:14,279 | VectorStoreService | INFO | Loaded 804 documents from data\qa_pairs.csv
+2025-08-22 10:27:25,015 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-22 10:27:25,064 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:27:27,185 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:27:29,267 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:27:40,638 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'hello': (unavailable_model) Unavailable model: gpt-5
+Code: unavailable_model
+Message: Unavailable model: gpt-5
+2025-08-22 10:29:18,931 | VectorStoreService | INFO | Loaded 804 documents from data\qa_pairs.csv
+2025-08-22 10:29:25,919 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-22 10:29:25,919 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:29:27,882 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:29:29,966 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:29:42,260 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'hello': (unavailable_model) Unavailable model: gpt-5
+Code: unavailable_model
+Message: Unavailable model: gpt-5
+2025-08-22 10:30:13,156 | VectorStoreService | INFO | Loaded 804 documents from data\qa_pairs.csv
+2025-08-22 10:30:23,228 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-22 10:30:23,290 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:30:25,489 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:30:27,836 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using GPT-5 Nano + FAISS grounding.
+2025-08-22 10:30:42,604 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'hello': (unavailable_model) Unavailable model: gpt-5
+Code: unavailable_model
+Message: Unavailable model: gpt-5
+2025-08-22 10:45:22,831 | VectorStoreService | INFO | Loaded 804 documents from data\qa_pairs.csv
+2025-08-22 10:45:36,481 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-22 10:45:37,449 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-22 10:45:39,021 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-22 10:45:40,618 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-22 10:45:49,489 | QAAgent | INFO | Processed query at ILLORA RETREATS: HELLO
+2025-08-22 10:46:09,790 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to book a room
+2025-08-22 10:49:08,570 | VectorStoreService | INFO | Loaded 804 documents from data\qa_pairs.csv
+2025-08-22 10:49:14,925 | VectorStoreService | INFO | Vector store created with Hugging Face embeddings.
+2025-08-22 10:49:14,925 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-22 10:49:16,336 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-22 10:49:17,731 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully using OpenAI GPT.
+2025-08-22 10:49:29,736 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-08-22 10:49:42,558 | QAAgent | INFO | Processed query at ILLORA RETREATS: i want to book a room
+2025-08-22 10:54:15,137 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to order a espresso to my roon
+2025-08-22 10:54:30,719 | QAAgent | INFO | Processed query at ILLORA RETREATS: it would be delivered in room 201
+2025-08-22 10:54:50,567 | QAAgent | INFO | Processed query at ILLORA RETREATS: deliver it immidiately
+2025-08-22 10:55:22,205 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want a espresso in room 201 immidiately
+2025-08-22 10:56:01,321 | QAAgent | INFO | Processed query at ILLORA RETREATS: What are the check in and checkout times
+2025-08-22 10:56:19,853 | QAAgent | INFO | Processed query at ILLORA RETREATS: what is the check in time
+2025-08-22 10:56:38,079 | QAAgent | INFO | Processed query at ILLORA RETREATS: what is the location of the hotel
+2025-08-22 10:56:57,950 | QAAgent | INFO | Processed query at ILLORA RETREATS: what is the location of ilora
+2025-08-22 10:57:56,586 | QAAgent | INFO | Processed query at ILLORA RETREATS: Where is Ilora Retreats located
+2025-08-22 11:14:40,914 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 11:14:52,655 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 11:14:52,702 | QAAgent | INFO | ILLORA RETREATS QA agent initialized using GitHub Inference (gpt-5-nano) + FAISS grounding.
+2025-08-22 11:15:07,681 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'hello': (unavailable_model) Unavailable model: gpt-5-nano
+Code: unavailable_model
+Message: Unavailable model: gpt-5-nano
+2025-08-22 11:22:42,980 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 11:22:55,349 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 11:22:56,313 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 11:22:58,829 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 11:23:06,270 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 11:23:06,270 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 11:23:08,393 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 11:23:39,333 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-08-22 11:23:57,636 | QAAgent | INFO | Processed query at ILLORA RETREATS: where is ilora retreats located
+2025-08-22 11:24:49,920 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 11:24:57,400 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 11:24:57,400 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 11:24:59,552 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 11:25:01,907 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 11:25:15,173 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-08-22 13:17:25,572 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 13:17:39,990 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 13:17:40,673 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:20:45,596 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 13:20:52,425 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 13:20:52,426 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:20:54,772 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:20:56,982 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:34:58,242 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 13:35:05,723 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 13:35:05,724 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:35:08,235 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:35:10,938 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:36:15,348 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 13:36:23,081 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 13:36:23,081 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:36:25,511 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:36:28,064 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:36:44,675 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:40:38,284 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 13:40:52,208 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 13:40:52,209 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:40:56,993 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:41:02,636 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:42:05,864 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:48:48,421 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:48:51,563 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:48:56,812 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:53:52,239 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 13:53:59,850 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 13:53:59,851 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:54:02,178 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:54:04,432 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:54:39,055 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 13:54:50,548 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 13:54:51,165 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:54:53,280 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:54:55,465 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:59:09,725 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 13:59:17,601 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 13:59:17,601 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:59:19,815 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 13:59:22,116 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 14:02:37,834 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 14:02:49,618 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 14:02:50,193 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 14:02:52,917 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 14:02:55,666 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 15:52:29,613 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 15:52:52,587 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 15:52:54,415 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 15:53:15,473 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-08-22 15:53:27,362 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to book a rooom
+2025-08-22 15:57:03,328 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 15:57:15,040 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 15:57:15,042 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 16:07:15,344 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-08-22 16:07:37,609 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-08-22 16:07:39,423 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-08-22 16:07:53,185 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-08-22 16:08:06,301 | QAAgent | INFO | Processed query at ILLORA RETREATS: what are the check in and check out times
+2025-08-22 16:08:25,623 | QAAgent | INFO | Processed query at ILLORA RETREATS: where is ilora retreats located
+2025-09-01 15:04:33,021 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-01 15:04:52,463 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-01 15:04:53,830 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-01 15:04:53,830 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-01 15:05:11,449 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'hello': [Errno 2] No such file or directory: 'data\\agents_file'
+2025-09-01 15:12:36,055 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-01 15:12:44,512 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-01 15:12:45,463 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-01 15:12:45,463 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-01 15:13:13,537 | QAAgent | ERROR | Error processing query at ILLORA RETREATS 'hello': [Errno 2] No such file or directory: 'data\\agents_file'
+2025-09-01 15:15:22,712 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-01 15:15:30,625 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-01 15:15:31,345 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-01 15:15:31,345 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-01 15:15:44,603 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-09-01 15:15:59,918 | QAAgent | INFO | Processed query at ILLORA RETREATS: whats your name
+2025-09-01 15:16:17,201 | QAAgent | INFO | Processed query at ILLORA RETREATS: How are you
+2025-09-01 15:17:48,878 | QAAgent | INFO | Processed query at ILLORA RETREATS: what is your agent name
+2025-09-01 15:18:10,149 | QAAgent | INFO | Processed query at ILLORA RETREATS: can you give me details about the hotel
+2025-09-01 15:18:59,994 | QAAgent | INFO | Processed query at ILLORA RETREATS: where is ilora retreats?
+2025-09-01 15:19:19,044 | QAAgent | INFO | Processed query at ILLORA RETREATS: what is the location of ilora retreats'
+2025-09-01 15:19:43,548 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to order lunch to my room
+2025-09-01 15:20:02,569 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want a Dosa in my room
+2025-09-01 15:20:21,574 | QAAgent | INFO | Processed query at ILLORA RETREATS: please place a order for a dosa
+2025-09-01 15:20:47,699 | QAAgent | INFO | Processed query at ILLORA RETREATS: deliver a cofee into my room
+2025-09-01 15:21:17,857 | QAAgent | INFO | Processed query at ILLORA RETREATS: Deliver the coffee to my room immidiately
+2025-09-01 15:21:48,341 | QAAgent | INFO | Processed query at ILLORA RETREATS: My room number is 106 and deliver the coffee right now
+2025-09-01 15:22:09,226 | QAAgent | INFO | Processed query at ILLORA RETREATS: you place an  order on my behalf
+2025-09-01 15:24:02,625 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-01 15:24:10,740 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-01 15:24:11,473 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-01 15:24:11,473 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-01 15:24:29,605 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-09-01 15:25:26,243 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-01 15:25:33,846 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-01 15:25:34,560 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-01 15:25:34,560 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-01 15:25:43,250 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-09-01 15:28:02,504 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-01 15:28:10,542 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-01 15:28:11,310 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-01 15:28:11,310 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-01 15:28:21,052 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-09-01 15:32:36,915 | QAAgent | INFO | Processed query at ILLORA RETREATS: Give me the details of the hotel
+2025-09-02 17:34:50,535 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-02 17:35:13,940 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-02 17:35:15,832 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-02 17:35:15,832 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-02 17:35:53,338 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-02 17:36:03,163 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-02 17:36:03,816 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-02 17:36:03,816 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-02 17:37:44,935 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-02 17:37:55,291 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-02 17:37:56,014 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-02 17:37:56,014 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-03 11:24:44,745 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-03 11:24:58,330 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-03 11:24:58,992 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-03 11:24:58,992 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-03 11:54:38,429 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-03 11:54:48,797 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-03 11:54:49,356 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-03 11:54:49,356 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-03 11:55:58,498 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-03 11:56:09,336 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-03 11:56:09,929 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-03 11:56:09,929 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-03 11:56:15,293 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-03 11:56:28,425 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-03 11:56:29,296 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-03 11:56:29,296 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-03 11:56:34,455 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-03 11:56:44,243 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-03 11:56:44,782 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-03 11:56:44,782 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-03 11:57:28,245 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-03 11:57:37,928 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-03 11:57:38,596 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-03 11:57:38,596 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-03 11:58:07,672 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-09-03 11:58:07,677 | web | INFO | web |  | hello | Hello! Welcome to ILLORA RETREATS. I知 Pankaj, your concierge. How may I assist you today? | Intent: greet
+2025-09-03 11:58:22,623 | QAAgent | INFO | Processed query at ILLORA RETREATS: What is the location of Illora retreat
+2025-09-03 11:58:45,271 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to order a coffee in my room
+2025-09-03 11:59:22,143 | QAAgent | INFO | Processed query at ILLORA RETREATS: What are the places we can go nearby
+2025-09-03 11:59:52,454 | QAAgent | INFO | Processed query at ILLORA RETREATS: good
+2025-09-03 11:59:52,455 | web | INFO | web |  | good | Hello! I知 Pankaj, your concierge at Illora Retreats. I知 glad to hear you池e feeling good. How may I assist you today? Whether it痴 dining recommendations, spa appointments, gym access, or anything else, just let me know! | Intent: greet
+2025-09-03 12:00:13,336 | QAAgent | INFO | Processed query at ILLORA RETREATS: give me some dinner recommendation
+2025-09-03 12:00:52,097 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to book a spa
+2025-09-03 12:01:07,171 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to make a payment
+2025-09-03 13:25:51,211 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-03 13:26:02,145 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-03 13:26:02,821 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-03 13:26:02,821 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-03 13:26:31,561 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-09-03 13:26:31,568 | web | INFO | web |  | hello | Hello! Welcome to ILLORA RETREATS. I知 Pankaj, your concierge. How may I assist you today? | Intent: greet
+2025-09-03 13:26:44,105 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-09-03 13:26:44,106 | web | INFO | web |  | hello | Hello! Welcome to ILLORA RETREATS. I知 Pankaj, your concierge. How may I assist you today? | Intent: greet
+2025-09-03 13:28:44,248 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-09-03 13:28:44,249 | web | INFO | web |  | hello | Hello! Welcome to ILLORA RETREATS. I知 Pankaj, your concierge. How may I assist you today? | Intent: greet
+2025-09-03 13:28:59,682 | QAAgent | INFO | Processed query at ILLORA RETREATS: Where is illora located
+2025-09-03 13:29:19,937 | QAAgent | INFO | Processed query at ILLORA RETREATS: Can you let me know what all features i can access in a room in the hotel
+2025-09-03 13:29:59,004 | QAAgent | INFO | Processed query at ILLORA RETREATS: what are the places we can visit
+2025-09-03 13:29:59,005 | web | INFO | web |  | what are the places we can visit | Hello! At Illora Retreats we can arrange a variety of local excursions, including visits to authentic Maasai villages and other cultural experiences that showcase the region痴 heritage. Our tour desk is also happy to help you plan additional sightseeing or adventure activities tailored to your interests. Just let us know what you壇 like to explore, and we値l take care of the details! | Intent: ask_room_pricing
+2025-09-03 13:30:15,191 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to order a coffee to my room
+2025-09-03 13:30:40,876 | QAAgent | INFO | Processed query at ILLORA RETREATS: What all can you do
+2025-09-03 13:30:48,728 | QAAgent | INFO | Processed query at ILLORA RETREATS: great
+2025-09-03 14:03:51,689 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-03 14:04:02,587 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-03 14:04:03,258 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-03 14:04:03,258 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-03 14:05:54,226 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-09-03 14:05:54,231 | web | INFO | web |  | hello | Hello! Welcome to ILLORA RETREATS. I知 Pankaj, your concierge. How may I assist you today? | Intent: greet
+2025-09-03 14:26:40,341 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-09-03 14:26:40,344 | web | INFO | web |  | hello | Hello! Welcome to ILLORA RETREATS. I知 Pankaj, your concierge. How may I assist you today? | Intent: greet
+2025-09-03 14:26:46,059 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to make a payment
+2025-09-03 14:45:10,338 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-09-03 14:45:10,342 | web | INFO | web |  | hello | Hello! Welcome to ILLORA RETREATS. I知 Pankaj, your concierge. How may I assist you today? | Intent: greet
+2025-09-03 14:45:20,073 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to make a payment
+2025-09-04 12:35:33,670 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-04 12:35:53,704 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-04 12:35:55,155 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-04 12:35:55,155 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-05 14:53:38,208 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-05 14:53:53,130 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-05 14:53:54,567 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-05 14:53:54,567 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-06 13:05:15,153 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-06 13:05:30,755 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-06 13:05:32,057 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-06 13:05:32,057 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-06 13:24:50,469 | QAAgent | INFO | Processed query at ILLORA RETREATS: hello
+2025-09-06 13:24:50,483 | web | INFO | web |  | hello | Hello! Welcome to ILLORA RETREATS. I知 Pankaj, your concierge. How may I assist you today? | Intent: greet
+2025-09-06 13:24:59,488 | QAAgent | INFO | Processed query at ILLORA RETREATS: I want to make a payment
+2025-09-06 16:41:04,469 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-06 16:41:28,673 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-06 16:41:30,238 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-06 16:41:30,239 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 00:46:46,557 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 00:47:04,256 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 00:47:05,532 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 00:47:05,532 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 00:49:39,529 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 00:49:51,471 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 00:49:52,155 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 00:49:52,155 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 00:49:57,500 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:00:41,459 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:00:55,040 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 01:00:55,871 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 01:00:55,872 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 01:01:08,991 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:01:21,995 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 01:01:22,666 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 01:01:22,666 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 01:02:47,717 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:02:59,134 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 01:03:00,013 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 01:03:00,013 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 01:03:05,952 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:03:17,983 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 01:03:18,653 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 01:03:18,653 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 01:03:30,795 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:03:43,923 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 01:03:44,821 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 01:03:44,821 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 01:03:55,158 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:04:07,819 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 01:04:08,868 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 01:04:08,868 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 01:09:04,447 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:09:17,641 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 01:09:18,332 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 01:09:18,332 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 01:09:46,461 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:10:00,360 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 01:10:00,989 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 01:10:00,989 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 01:32:44,411 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:32:57,996 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 01:32:59,100 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 01:32:59,100 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 01:33:04,458 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:34:10,074 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:34:22,895 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 01:34:23,746 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 01:34:23,746 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 01:48:56,840 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:49:11,338 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 01:49:12,201 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 01:49:12,201 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 01:49:41,645 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:49:57,336 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 01:49:58,188 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 01:49:58,189 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 01:50:04,805 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:50:25,048 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 01:50:38,116 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 01:50:38,987 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 01:50:38,987 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 02:11:50,700 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 02:12:06,229 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 02:12:08,111 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 02:12:08,111 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 02:12:15,131 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 02:12:29,413 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 02:12:30,623 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 02:12:30,623 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 02:12:37,430 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 02:12:49,324 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 02:13:05,829 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 02:13:18,271 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 02:13:19,083 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 02:13:19,084 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 02:15:24,507 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 02:15:39,056 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 02:15:39,878 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 02:15:39,878 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 02:15:46,443 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 02:15:59,241 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 02:16:00,121 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 02:16:00,121 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 02:16:15,752 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 02:16:27,685 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 02:16:28,555 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 02:16:28,555 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 07:58:44,772 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:07:42,187 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:08:06,598 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:08:09,033 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:08:09,033 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:08:23,846 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:08:38,305 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:08:39,017 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:08:39,018 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:08:43,793 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:08:56,301 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:08:56,942 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:08:56,942 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:21:35,576 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:21:48,349 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:21:49,054 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:21:49,054 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:22:20,287 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:22:33,167 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:22:33,886 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:22:33,886 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:22:44,699 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:22:57,745 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:22:58,361 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:22:58,361 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:26:16,090 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:26:29,824 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:26:30,482 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:26:30,482 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:30:31,903 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:30:45,316 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:30:45,965 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:30:45,965 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:30:55,273 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:31:07,896 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:31:08,626 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:31:08,626 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:34:27,941 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:34:41,295 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:34:42,004 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:34:42,005 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:38:30,759 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:38:44,310 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:38:45,000 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:38:45,000 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:38:50,309 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:39:03,092 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:39:03,736 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:39:03,736 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:39:08,561 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:39:22,977 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:39:23,672 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:39:23,673 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:42:19,942 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:42:31,913 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:42:32,767 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:42:32,767 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:42:36,641 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:42:49,989 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:42:50,962 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:42:50,962 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:42:51,015 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:42:51,016 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:43:15,993 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:43:29,549 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:43:30,300 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:43:30,300 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:43:30,375 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:43:30,376 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:43:50,202 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:44:04,069 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:44:04,954 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:44:04,954 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:44:08,596 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:44:21,328 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:44:22,083 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:44:22,083 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:44:22,139 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:44:22,139 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:45:39,564 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:45:56,855 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:46:09,261 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:46:10,024 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:46:10,024 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:46:14,133 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:46:27,084 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:46:27,882 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:46:27,882 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:46:27,952 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:46:27,952 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:56:19,127 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:56:31,965 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:56:32,703 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:56:32,703 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:56:36,911 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 08:56:51,059 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 08:56:51,714 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:56:51,715 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 08:56:51,774 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 08:56:51,775 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 09:00:04,198 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 09:00:17,642 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 09:00:18,481 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 09:00:18,481 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 09:00:18,544 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 09:00:18,544 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 09:03:42,880 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 09:03:55,810 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 09:03:56,561 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 09:03:56,562 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 09:03:56,625 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 09:03:56,625 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 09:04:03,823 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 09:04:10,647 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 09:04:23,309 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 09:04:24,211 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 09:04:24,211 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 09:04:24,267 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 09:04:24,267 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 09:05:51,335 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 09:06:04,188 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 09:06:05,062 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 09:06:05,063 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 09:06:05,162 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 09:06:05,164 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 09:06:44,781 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-08 09:06:59,051 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-08 09:06:59,797 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 09:06:59,797 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-08 09:06:59,850 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-08 09:06:59,851 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
