@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 210 11% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 11% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11% 15%;
+
+    --primary: 200 85% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 210 11% 15%;
+
+    --muted: 210 40% 98%;
+    --muted-foreground: 210 11% 55%;
+
+    --accent: 210 40% 96%;
+    --accent-foreground: 210 11% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 94%;
+    --ring: 200 85% 45%;
+
+    /* Hotel-specific colors */
+    --hotel-primary: 200 85% 45%;
+    --hotel-secondary: 210 40% 96%;
+    --hotel-accent: 142 76% 36%;
+    --hotel-success: 142 76% 36%;
+    --hotel-light: 210 40% 98%;
+    
+    /* Chat colors */
+    --chat-bot: 200 100% 96%;
+    --chat-user: 142 70% 92%;
+    --chat-border: 210 20% 88%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--hotel-primary)), hsl(200 90% 55%));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--hotel-primary) / 0.9), hsl(200 85% 35% / 0.9));
+    
+    /* Shadows */
+    --shadow-soft: 0 2px 8px hsl(var(--hotel-primary) / 0.08);
+    --shadow-medium: 0 4px 16px hsl(var(--hotel-primary) / 0.12);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 210 11% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 210 11% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 210 11% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 200 85% 55%;
+    --primary-foreground: 210 11% 8%;
+
+    --secondary: 210 11% 15%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 11% 15%;
+    --muted-foreground: 210 20% 70%;
+
+    --accent: 210 11% 15%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 11% 20%;
+    --input: 210 11% 15%;
+    --ring: 200 85% 55%;
+
+    --hotel-primary: 200 85% 55%;
+    --hotel-secondary: 210 11% 15%;
+    --hotel-accent: 142 76% 45%;
+    --hotel-success: 142 76% 45%;
+    --hotel-light: 210 11% 12%;
+    
+    --chat-bot: 210 11% 12%;
+    --chat-user: 142 30% 20%;
+    --chat-border: 210 11% 20%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
