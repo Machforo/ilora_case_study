@@ -3,7 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Building2, LogOut, MessageCircle, QrCode, User, CreditCard, IdCard } from "lucide-react";
+import { WhatsAppQR } from "@/components/whatsapp-qr";
+import { Building2, LogOut, MessageCircle, User, CreditCard, IdCard } from "lucide-react";
 
 interface HotelSidebarProps {
   isGuest: boolean;
@@ -108,13 +109,18 @@ export function HotelSidebar({ isGuest, onGuestStatusChange, onLogout, userDetai
           </CardTitle>
         </CardHeader>
         <CardContent className="text-center">
-          <div className="w-32 h-32 mx-auto mb-3 bg-muted rounded-lg flex items-center justify-center">
-            <QrCode className="w-16 h-16 text-muted-foreground" />
-          </div>
+          <WhatsAppQR />
           <p className="text-xs text-muted-foreground mb-3">
             Scan QR code to chat with us on WhatsApp
           </p>
-          <Button variant="outline" size="sm" className="w-full">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="w-full"
+            onClick={() => {
+              window.open("https://scan.page/D7EIyr", "_blank");
+            }}
+          >
             <MessageCircle className="w-4 h-4 mr-2" />
             Chat with us on WhatsApp
           </Button>
