@@ -34,8 +34,8 @@ REMEMBER_LOCALSTORAGE_KEY = "illora_remember"
 st.set_page_config(page_title="ILORA Retreat – AI Concierge", page_icon="🛎️", layout="wide")
 
 # --- Branding & constants ---
-LOGO_PATH = "add_ons\\logo.jpg"
-BACKGROUND_IMAGE = "add_ons\\illora_retreats.jpg"
+LOGO_PATH = "add_ons/logo.jpg"
+BACKGROUND_IMAGE = "add_ons/illora_retreats.jpg"
 QR_LINK = "https://illorafinal-lhxrkgjufxiqhwjsakm2py.streamlit.app/"
 WHATSAPP_LINK = "https://wa.me/919876543210"
 
@@ -45,7 +45,7 @@ STATIC_DIR.mkdir(parents=True, exist_ok=True)
 UPLOAD_DIR = Path("uploads/id_proofs")
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
-MENU_FILE =  "services\\menu.json"
+MENU_FILE =  "services/menu.json"
 with open(MENU_FILE, "r", encoding="utf-8") as f:
     MENU = json.load(f)
 
@@ -71,7 +71,7 @@ import os
 from pathlib import Path
 from fastapi import UploadFile
 
-UPLOAD_DIR = Path("data\\id_proofs")
+UPLOAD_DIR = Path("data/id_proofs")
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 def save_id_proof(email: str, file: UploadFile) -> str:
