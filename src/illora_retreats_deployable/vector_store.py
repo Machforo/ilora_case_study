@@ -64,7 +64,7 @@ def create_vector_store():
         return _VECTOR_STORE
 
     try:
-        csv_path = Path("data\\qa_pairs.csv")
+        csv_path = Path("data/qa_pairs.csv")
         df = _load_qa_dataframe(csv_path)
         docs = _to_documents(df)
         logger.info(f"Loaded {len(docs)} Q&A documents from {csv_path}")
