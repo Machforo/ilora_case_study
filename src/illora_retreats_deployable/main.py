@@ -1,4 +1,4 @@
-# main.py (cleaned & corrected)
+
 import os
 import uuid
 import json
@@ -6,21 +6,24 @@ import random
 import logging
 import asyncio
 from typing import List, Optional, Dict, Any
-
 from datetime import date, datetime, timedelta
 
-from fastapi import FastAPI, Depends, UploadFile, File, HTTPException, Query, Request, BackgroundTasks
+from fastapi import FastAPI, Depends, UploadFile, File, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
-
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-# Project imports (preserved as in your original file)
+# Project imports
 import web_ui_final as web
 from services.intent_classifier import classify_intent
 from logger import log_chat
 from services.qa_agent import ConciergeBot
-from services.payment_gateway import create_checkout_session, create_addon_checkout_session, create_pending_checkout_session
+from services.payment_gateway import (
+    create_checkout_session,
+    create_addon_checkout_session,
+    create_pending_checkout_session,
+)
 
 # Illora checkin app / models
 from illora.checkin_app.models import Room, Booking, BookingStatus
@@ -32,26 +35,32 @@ from illora.checkin_app.chat_models import ChatMessage
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 
-# -------------------------
-# Logging
+# ------------------------- Logging -------------------------
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("ai_chieftain")
 
-# --- FastAPI app
+# ------------------------- FastAPI app -------------------------
 app = FastAPI(title="AI Chieftain API", version="1.0.0")
 
+# ------------------------- CORS -------------------------
+FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "https://ai-chieftain.webisdom.com")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],   # or restrict to ["http://localhost:5173"]
+    allow_origins=[FRONTEND_ORIGIN],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Concierge bot instance
+# ------------------------- Static files -------------------------
+STATIC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
+os.makedirs(STATIC_DIR, exist_ok=True)
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+
+# ------------------------- Concierge bot -------------------------
 bot = ConciergeBot()
 
-# Demo in-memory sample bookings data (kept for dashboard/demo)
+# ------------------------- Demo in-memory data -------------------------
 DEMO_NAMES = [
     "John Doe", "Jane Smith", "Michael Johnson", "Emily Davis",
     "Daniel Wilson", "Sophia Martinez", "James Brown", "Olivia Taylor",
@@ -62,11 +71,8 @@ DEMO_NAMES = [
 DEMO_ROOM_TYPES = ["Deluxe Suite", "Executive Room", "Standard Room", "Presidential Suite"]
 sample_bookings: List[Dict[str, Any]] = []
 
-# ---------- Helpers ----------
+# ------------------------- Helpers -------------------------
 def get_db() -> Session:
-    """
-    Simple DB session helper. Use in endpoints where explicit session management is needed.
-    """
     db = SessionLocal()
     try:
         yield db
@@ -74,37 +80,25 @@ def get_db() -> Session:
         db.close()
 
 def menu_file_path() -> str:
-    # cross-platform path
-    return os.path.join("services", "menu.json")
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "services", "menu.json")
 
-# ---------------- STARTUP ----------------
+# ------------------------- Startup -------------------------
 @app.on_event("startup")
 def on_startup():
-    """
-    Create DB tables, initialize user DB and seed both DB & demo in-memory sample bookings.
-    """
-    # create SQLAlchemy tables
     try:
         Base.metadata.create_all(bind=engine)
     except Exception as e:
         logger.warning("Failed to create DB tables: %s", e)
 
-    # init user DB (file-based)
     try:
         USER_DB_PATH = "illora_user_gate.db"
         web.init_user_db(USER_DB_PATH)
     except Exception as e:
-        logger.warning("Warning: failed to init user DB: %s", e)
+        logger.warning("Failed to init user DB: %s", e)
 
-    # seed Rooms, a demo Booking, and example ChatMessages (idempotent)
     db = SessionLocal()
     try:
-        # Seed Rooms if none exist
-        try:
-            room_count = db.query(func.count(Room.id)).scalar()
-        except Exception:
-            room_count = 0
-
+        room_count = db.query(func.count(Room.id)).scalar() if db else 0
         if not room_count:
             logger.info("Seeding default rooms...")
             demo_rooms = [
@@ -115,10 +109,8 @@ def on_startup():
             db.add_all(demo_rooms)
             db.commit()
 
-        # Seed a demo booking so dashboard has at least one
         booking_count = db.query(func.count(Booking.id)).scalar()
         if not booking_count:
-            logger.info("Seeding a demo DB booking...")
             first_room = db.query(Room).first()
             demo_booking = Booking(
                 guest_name="Demo Guest",
@@ -133,21 +125,25 @@ def on_startup():
             db.add(demo_booking)
             db.commit()
 
-        # Seed chat examples
         chat_exists = db.query(func.count(ChatMessage.session_id)).scalar() if hasattr(ChatMessage, "session_id") else 0
         if not chat_exists:
-            cm_user = ChatMessage(session_id="seed-session", email="demo@example.com", channel="web", role="user", text="Hi, is breakfast included?", intent="ask_breakfast", is_guest=True)
-            cm_bot = ChatMessage(session_id="seed-session", email="demo@example.com", channel="web", role="assistant", text="Breakfast is included for bookings with breakfast plan.", intent="reply", is_guest=True)
+            cm_user = ChatMessage(
+                session_id="seed-session", email="demo@example.com", channel="web",
+                role="user", text="Hi, is breakfast included?", intent="ask_breakfast", is_guest=True
+            )
+            cm_bot = ChatMessage(
+                session_id="seed-session", email="demo@example.com", channel="web",
+                role="assistant", text="Breakfast is included for bookings with breakfast plan.",
+                intent="reply", is_guest=True
+            )
             db.add_all([cm_user, cm_bot])
             db.commit()
-
     except Exception as e:
         logger.warning("Startup seeding error: %s", e)
         db.rollback()
     finally:
         db.close()
 
-    # seed demo in-memory bookings used by dashboards that rely on in-memory data
     global sample_bookings
     sample_bookings = []
     base_date = datetime.today()
@@ -165,8 +161,7 @@ def on_startup():
             "amount": random.randint(5000, 20000)
         })
 
-
-# ---------------- SIMPLE SSE BROKER ----------------
+# ------------------------- SSE Broker -------------------------
 class EventBroker:
     def __init__(self):
         self.connections: List[asyncio.Queue] = []
@@ -185,7 +180,6 @@ class EventBroker:
 
     async def broadcast(self, event: str, data: Dict[str, Any]):
         msg = json.dumps({"event": event, "data": data}, default=str)
-        # fan out to all queues
         for q in list(self.connections):
             try:
                 await q.put(msg)
@@ -199,14 +193,10 @@ broker = EventBroker()
 
 @app.get("/events")
 async def sse_events(request: Request):
-    """
-    Simple Server-Sent Events endpoint.
-    """
     async def event_generator(q: asyncio.Queue):
         try:
             await q.put(json.dumps({"event": "connected", "data": {}}))
             while True:
-                # if client disconnected, break
                 if await request.is_disconnected():
                     break
                 msg = await q.get()
@@ -218,8 +208,7 @@ async def sse_events(request: Request):
     headers = {"Cache-Control": "no-cache", "X-Accel-Buffering": "no"}
     return StreamingResponse(event_generator(q), headers=headers, media_type="text/event-stream")
 
-
-# ---------------- Pydantic models ----------------
+# ------------------------- Pydantic Models -------------------------
 class LoginReq(BaseModel):
     email: str
     password: str
@@ -281,8 +270,7 @@ class DBBookingUpdate(BaseModel):
     price: Optional[float] = None
     status: Optional[str] = None  # e.g., "CONFIRMED", "CHECKED_IN", etc.
 
-
-# ---------------- Demo / In-memory endpoints (kept for your dashboard demos) ----------------
+# ------------------------- Demo endpoints -------------------------
 @app.get("/demo/bookings/all")
 def demo_get_all_bookings():
     return {"bookings": sample_bookings}
@@ -305,9 +293,6 @@ def demo_update_booking(booking_id: int, patch: DemoBookingUpdate):
 
 @app.post("/admin/seed")
 def admin_seed_demo(count: int = Query(20, ge=1, le=100)):
-    """
-    Overwrite in-memory demo sample_bookings with `count` items for dashboard/demo.
-    """
     global sample_bookings
     sample_bookings = []
     base_date = datetime.today()
@@ -325,6 +310,8 @@ def admin_seed_demo(count: int = Query(20, ge=1, le=100)):
             "amount": random.randint(5000, 20000)
         })
     return {"ok": True, "seeded": len(sample_bookings)}
+
+
 
 
 # ---------------- Auth endpoints ----------------
@@ -768,13 +755,11 @@ def id_proof(email: str, file: UploadFile = File(...)):
     return {"url": url}
 
 
-# ---------------- Misc admin/demo endpoints ----------------
 @app.get("/health")
 def health():
     return {"ok": True, "timestamp": datetime.utcnow().isoformat()}
 
-
-# Optional: allow running with `python main.py` for local quick tests
+# ------------------------- Run locally -------------------------
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=int(os.environ.get("PORT", 5002)), reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=int(os.environ.get("PORT", 8000)), reload=True)
