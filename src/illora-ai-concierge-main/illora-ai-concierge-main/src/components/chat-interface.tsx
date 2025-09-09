@@ -11,7 +11,7 @@ import ReactMarkdown from "react-markdown";
  * Default API base — matches your main.py default.
  * Override with REACT_APP_API_BASE or NEXT_PUBLIC_API_BASE env var if needed.
  */
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5002";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 /* ---------------------- Helpers ---------------------- */
 function isoDateOnly(d?: string | Date): string | null {
@@ -728,7 +728,7 @@ export function ChatInterface({ className }: { className?: string }) {
           size="lg"
           className="w-full h-12 border-hotel-success/20 text-hotel-success hover:bg-hotel-success/5"
           onClick={() => {
-            if (typeof window !== "undefined") window.open("https://wa.me/?text=Hello%20ILLORA%20Concierge", "_blank");
+            if (typeof window !== "undefined") window.open("https://scan.page/D7EIyr", "_blank");
           }}
         >
           <MessageCircle className="w-5 h-5 mr-2" />
