@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
     proxy: {
       "/api": {
-        target: "http://localhost:5002", // backend running with uvicorn
+        target: "http://localhost:8000", // backend running with uvicorn
         changeOrigin: true,
         secure: false,
       },
