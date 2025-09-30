@@ -7,18 +7,17 @@ import { ChatInterface } from "@/components/chat-interface";
 import { Menu } from "lucide-react";
 
 interface MobileLayoutProps {
-  isGuest: boolean;
-  onGuestStatusChange: (status: boolean) => void;
   onLogout: () => void;
   userDetails?: {
     uid: string;
     bookingStatus: string;
     idProof: string;
     pendingBalance: number;
+    status: string;
   };
 }
 
-export function MobileLayout({ isGuest, onGuestStatusChange, onLogout, userDetails }: MobileLayoutProps) {
+export function MobileLayout({ onLogout, userDetails }: MobileLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -30,7 +29,7 @@ export function MobileLayout({ isGuest, onGuestStatusChange, onLogout, userDetai
             <span className="text-white font-bold text-sm">I</span>
           </div>
           <div>
-            <h1 className="font-bold text-hotel-primary">ILLORA Retreat</h1>
+            <h1 className="font-bold text-hotel-primary">ILORA Retreats</h1>
             <p className="text-xs text-muted-foreground">AI Concierge</p>
           </div>
         </div>
@@ -43,8 +42,6 @@ export function MobileLayout({ isGuest, onGuestStatusChange, onLogout, userDetai
           </SheetTrigger>
           <SheetContent side="left" className="p-0 w-80">
             <HotelSidebar
-              isGuest={isGuest}
-              onGuestStatusChange={onGuestStatusChange}
               onLogout={onLogout}
               userDetails={userDetails}
             />
@@ -58,7 +55,7 @@ export function MobileLayout({ isGuest, onGuestStatusChange, onLogout, userDetai
           <div className="absolute inset-0 bg-gradient-hero" />
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white p-4">
             <h1 className="text-2xl font-bold mb-2">
-              🏨 ILLORA Retreat
+              🏨 ILORA Retreats
             </h1>
             <p className="text-sm opacity-90">
               Your AI Concierge

@@ -562,3 +562,725 @@ Message: Unavailable model: gpt-5-nano
 2025-09-08 09:06:59,797 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
 2025-09-08 09:06:59,850 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
 2025-09-08 09:06:59,851 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-09 14:32:35,213 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-09 14:33:06,580 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-09 14:33:17,319 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-09 14:33:18,355 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-09 14:33:18,355 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-09 14:37:46,195 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-09 14:37:57,578 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-09 14:37:58,270 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-09 14:37:58,270 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-09 14:38:03,614 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-09 14:38:15,348 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-09 14:38:16,187 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-09 14:38:16,187 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-09 14:38:22,505 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-09 14:38:33,424 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-09 14:38:34,144 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-09 14:38:34,145 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-09 14:38:45,749 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-09 14:38:57,612 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-09 14:38:58,242 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-09 14:38:58,243 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-09 18:28:50,496 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-09 18:29:14,650 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-09 18:29:16,661 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-09 18:29:16,661 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-09 18:29:20,074 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-09 18:29:32,728 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-09 18:29:33,642 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-09 18:29:33,642 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-09 18:37:54,894 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-09 18:38:16,709 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-09 18:38:19,378 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-09 18:38:19,378 | QAAgent | INFO | ILLORA RETREATS QA agent initialized successfully.
+2025-09-09 18:41:06,859 | QAAgent | INFO | Processed query at ILLORA RETREATS: Need a coffee to my room
+2025-09-09 18:42:08,302 | QAAgent | INFO | Processed query at ILLORA RETREATS: What’s your name?
+2025-09-16 01:26:18,964 | QAAgent | ERROR | Error initializing QA agent: 'ConciergeBot' object has no attribute 'openai_api_key'
+2025-09-16 03:32:59,916 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-16 03:33:30,416 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-16 03:33:30,424 | QAAgent | ERROR | Error initializing QA agent: 1 validation error for HuggingFaceHub
+  Value error, Did not find huggingfacehub_api_token, please add an environment variable `HUGGINGFACEHUB_API_TOKEN` which contains it, or pass `huggingfacehub_api_token` as a named parameter. [type=value_error, input_value={'repo_id': 'google/flan-...nt': None, 'task': None}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/value_error
+Traceback (most recent call last):
+  File "C:\Users\Atharv\Documents\PROJECTS\illora_retreats_final\src\illora_retreats_deployable\services\qa_agent.py", line 93, in __init__
+    self.llm = HuggingFaceHub(
+               ~~~~~~~~~~~~~~^
+        repo_id=hf_model,
+        ^^^^^^^^^^^^^^^^^
+        huggingfacehub_api_token=hf_token,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        model_kwargs={"temperature": 0, "max_new_tokens": 512},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Atharv\AppData\Roaming\Python\Python313\site-packages\langchain_core\_api\deprecation.py", line 223, in warn_if_direct_instance
+    return wrapped(self, *args, **kwargs)
+  File "C:\Users\Atharv\AppData\Roaming\Python\Python313\site-packages\langchain_core\load\serializable.py", line 130, in __init__
+    super().__init__(*args, **kwargs)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Atharv\AppData\Roaming\Python\Python313\site-packages\pydantic\main.py", line 253, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for HuggingFaceHub
+  Value error, Did not find huggingfacehub_api_token, please add an environment variable `HUGGINGFACEHUB_API_TOKEN` which contains it, or pass `huggingfacehub_api_token` as a named parameter. [type=value_error, input_value={'repo_id': 'google/flan-...nt': None, 'task': None}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/value_error
+2025-09-16 03:58:17,006 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-16 03:58:17,007 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-16 04:12:30,360 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-16 04:12:30,360 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-16 04:13:09,055 | QAAgent | INFO | Processed query at ILORA RETREATS: hello
+2025-09-16 04:14:09,318 | QAAgent | INFO | Processed query at ILORA RETREATS: Where is Ilora retreats located
+2025-09-16 04:14:59,810 | QAAgent | INFO | Processed query at ILORA RETREATS: Can you let me know about the details of the hotel
+2025-09-16 05:01:16,397 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-16 05:01:16,398 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-16 05:02:32,422 | QAAgent | INFO | Processed query at ILORA RETREATS: hello
+2025-09-16 05:03:14,887 | QAAgent | INFO | Processed query at ILORA RETREATS: Can you let me know more about the Weekend Buffet Offer
+2025-09-16 05:03:46,103 | QAAgent | INFO | Processed query at ILORA RETREATS: I want to order a coffee in my room
+2025-09-16 05:04:32,765 | QAAgent | INFO | Processed query at ILORA RETREATS: I want a Single Espresso delivered to my room immidiately
+2025-09-16 05:22:06,744 | QAAgent | INFO | Processed query at ILORA RETREATS: what is your name
+2025-09-16 05:37:21,742 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-16 05:37:21,743 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-16 05:38:02,948 | QAAgent | INFO | Processed query at ILORA RETREATS: hello
+2025-09-16 05:38:02,954 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | hello | Hello! Welcome to **ILORA RETREATS**. I’m AI Assistant, your concierge. How may I assist you today? | Intent: greet | Guest: True
+2025-09-16 05:38:51,280 | QAAgent | INFO | Processed query at ILORA RETREATS: My TV is not working can you help me to fix it
+2025-09-16 05:39:31,481 | QAAgent | INFO | Processed query at ILORA RETREATS: Call maintainence for me right now
+2025-09-16 05:39:31,485 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | Call maintainence for me right now | Certainly! To reach our maintenance team, please dial **7** for guest services. Our duty manager will connect you with the appropriate maintenance staff right away. If you need anything else—housekeeping, spa, restaurant, or anything else—just let me know! | Intent: payment_request | Guest: True
+2025-09-24 13:05:58,016 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 13:05:58,019 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-24 13:06:17,880 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 13:06:17,881 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-24 13:06:33,748 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 13:06:33,749 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-24 13:10:32,922 | QAAgent | INFO | Processed query at ILORA RETREATS: hello
+2025-09-24 13:11:25,714 | QAAgent | INFO | Processed query at ILORA RETREATS: Tell me the lunch timings
+2025-09-24 13:12:14,310 | QAAgent | INFO | Processed query at ILORA RETREATS: What is morning magic
+2025-09-24 13:12:59,485 | QAAgent | INFO | Processed query at ILORA RETREATS: what is evenings in the wild
+2025-09-24 13:13:34,090 | QAAgent | INFO | Processed query at ILORA RETREATS: what is the check in and checkout time
+2025-09-24 13:14:14,791 | QAAgent | INFO | Processed query at ILORA RETREATS: tell me about the electricity and power in the hotel
+2025-09-24 13:15:36,755 | QAAgent | INFO | Processed query at ILORA RETREATS: tell me about the In Room Amenities. Further what kind of pillow do you offer
+2025-09-24 13:16:18,695 | QAAgent | INFO | Processed query at ILORA RETREATS: What are the types of pillows which you have
+2025-09-24 13:17:13,255 | QAAgent | INFO | Processed query at ILORA RETREATS: Can you give me details about the Wifi?
+2025-09-24 13:17:56,773 | QAAgent | INFO | Processed query at ILORA RETREATS: What is the wifi password?
+2025-09-24 13:18:41,073 | QAAgent | INFO | Processed query at ILORA RETREATS: What is the camp rules?
+2025-09-24 13:19:27,742 | QAAgent | INFO | Processed query at ILORA RETREATS: What are Safety and Security rules
+2025-09-24 13:20:45,819 | QAAgent | INFO | Processed query at ILORA RETREATS: How many types of Tea do the hotel offers?
+2025-09-24 13:22:06,562 | QAAgent | INFO | Processed query at ILORA RETREATS: How many types of coffee do you offer?
+2025-09-24 16:06:20,061 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 16:06:20,064 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-24 16:06:37,955 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 16:06:37,956 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-24 16:06:50,194 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 16:06:50,196 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-24 16:08:51,749 | QAAgent | INFO | Processed query at ILORA RETREATS: hello
+2025-09-24 16:08:51,764 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | hello | Hello! Welcome to ILORA RETREATS. How may I assist you today? | Intent: greet | Guest: True
+2025-09-24 16:09:36,722 | QAAgent | INFO | Processed query at ILORA RETREATS: how many type of spa you have
+2025-09-24 16:10:34,585 | QAAgent | INFO | Processed query at ILORA RETREATS: tell me about facial and skin care
+2025-09-24 16:11:56,058 | QAAgent | INFO | Processed query at ILORA RETREATS: i want to order a coffee
+2025-09-24 16:11:58,472 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | i want to order a coffee | ```json
+[
+  "Single Espresso",
+  "Double Espresso",
+  "Americano",
+  "Mocha",
+  "Café Latte",
+  "Cappuccino",
+  "Macchiato",
+  "Iced Coffee",
+  "French Press"
+]
+```
+
+Would you like to confirm your coffee order? | Intent: payment_request | Guest: True
+2025-09-24 16:12:40,247 | QAAgent | INFO | Processed query at ILORA RETREATS: bring me single espresso
+2025-09-24 16:12:42,926 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | bring me single espresso | [
+  {
+    "item": "Single Espresso",
+    "quantity": 1
+  }
+]
+
+Please confirm if you would like to place this order. | Intent: payment_request | Guest: True
+2025-09-24 16:13:11,612 | QAAgent | INFO | Processed query at ILORA RETREATS: confirm the order
+2025-09-24 16:13:15,017 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | confirm the order | Certainly! Could you please let me know which items you’d like to order from our menu (e.g., coffee, tea, or any other dishes)? Once I have the details, I’ll provide the order summary in JSON format for your confirmation. | Intent: greet | Guest: True
+2025-09-24 16:16:19,278 | QAAgent | INFO | Processed query at ILORA RETREATS: Confirm the order of single espresso
+2025-09-24 16:16:25,457 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | Confirm the order of single espresso | Here is the order you’d like to place:
+
+```json
+[
+  {
+    "item": "Single Espresso",
+    "quantity": 1
+  }
+]
+```
+
+Please confirm if this is correct, and I’ll finalize the order for you. | Intent: ask_room_pricing | Guest: True
+2025-09-24 16:17:00,935 | QAAgent | INFO | Processed query at ILORA RETREATS: confirm
+2025-09-24 16:31:02,602 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-24 16:31:14,099 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-24 16:31:14,100 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-24 16:31:19,261 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-24 16:31:30,319 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-24 16:31:30,319 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-24 16:31:30,481 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-24 16:31:41,368 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-24 16:31:41,368 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-24 16:32:22,606 | QAAgent | INFO | Processed query at ILORA RETREATS: hello
+2025-09-24 16:32:22,613 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | hello | Good day! Welcome to **ILORA RETREATS**. I’m AI Assistant, your concierge. How may I assist you today? | Intent: greet | Guest: True
+2025-09-24 16:32:39,661 | QAAgent | INFO | Processed query at ILORA RETREATS: How many types of spa you have?
+2025-09-24 16:33:18,611 | QAAgent | INFO | Processed query at ILORA RETREATS: Tell me more about the massages you offer
+2025-09-24 16:34:18,651 | QAAgent | INFO | Processed query at ILORA RETREATS: tell me know about the body therapies
+2025-09-24 16:35:19,046 | QAAgent | INFO | Processed query at ILORA RETREATS: order me a coffee
+2025-09-24 16:35:22,473 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | order me a coffee | [
+  {
+    "name": "Americano",
+    "qty": 1
+  }
+]
+
+Please confirm your order. | Intent: book_addon_food | Guest: True
+2025-09-24 16:35:41,882 | QAAgent | INFO | Processed query at ILORA RETREATS: I want a list of the coffee you offer
+2025-09-24 16:35:44,797 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | I want a list of the coffee you offer | [
+  {"name":"Single Espresso","qty":1},
+  {"name":"Double Espresso","qty":1},
+  {"name":"Americano","qty":1},
+  {"name":"Mocha","qty":1},
+  {"name":"Café Latte","qty":1},
+  {"name":"Cappuccino","qty":1},
+  {"name":"Macchiato","qty":1},
+  {"name":"Iced Coffee","qty":1},
+  {"name":"French Press","qty":1}
+]
+
+Please confirm if you would like to place an order for any of these items. | Intent: ask_room_pricing | Guest: True
+2025-09-24 16:36:52,022 | QAAgent | INFO | Processed query at ILORA RETREATS: I want 2 Single espresso delivered to my room immidiately
+2025-09-24 16:36:55,373 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | I want 2 Single espresso delivered to my room immidiately | [
+  {
+    "name": "Single Espresso",
+    "qty": 2
+  }
+]
+
+Please confirm your order. | Intent: payment_request | Guest: True
+2025-09-24 16:37:07,330 | QAAgent | INFO | Processed query at ILORA RETREATS: confirm my order
+2025-09-24 16:37:10,409 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | confirm my order | I’m sorry—I don’t have the details of your order yet. Could you let me know which items you’d like (including any quantities or special notes), and I’ll put them into a JSON summary for you to confirm? | Intent: greet | Guest: True
+2025-09-24 16:40:31,580 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 16:40:31,581 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-24 16:40:50,484 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 16:40:50,484 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-24 16:41:00,795 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 16:41:00,796 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-24 16:41:11,611 | QAAgent | INFO | Processed query at ILORA RETREATS: hello
+2025-09-24 16:41:11,616 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | hello | Hello! Welcome to ILORA RETREATS. How may I assist you today? | Intent: greet | Guest: True
+2025-09-24 16:42:13,100 | QAAgent | INFO | Processed query at ILORA RETREATS: What all type of facial you have
+2025-09-24 16:43:45,819 | QAAgent | INFO | Processed query at ILORA RETREATS: Can you list down facial treatments you have
+2025-09-24 16:44:42,438 | QAAgent | INFO | Processed query at ILORA RETREATS: What are different massage treatments you have
+2025-09-24 16:48:23,186 | QAAgent | ERROR | Failed to read dos_donts file (ignored).
+Traceback (most recent call last):
+  File "C:\Users\Atharv\Documents\PROJECTS\illora_retreats_final - case-study\src\illora_retreats_deployable\services\qa_agent.py", line 275, in _load_dos_donts_from_file
+    return json.load(f)
+           ~~~~~~~~~^^^
+  File "C:\Python313\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "C:\Python313\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Python313\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\json\decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2025-09-24 16:48:41,165 | QAAgent | INFO | Initial sheets loaded.
+2025-09-24 16:48:41,166 | QAAgent | INFO | ConciergeBot initialized.
+2025-09-24 16:48:46,917 | QAAgent | ERROR | Failed to read dos_donts file (ignored).
+Traceback (most recent call last):
+  File "C:\Users\Atharv\Documents\PROJECTS\illora_retreats_final - case-study\src\illora_retreats_deployable\services\qa_agent.py", line 275, in _load_dos_donts_from_file
+    return json.load(f)
+           ~~~~~~~~~^^^
+  File "C:\Python313\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "C:\Python313\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Python313\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\json\decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2025-09-24 16:55:40,437 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 16:55:40,438 | QAAgent | INFO | ILORA RETREATS QA agent initialized.
+2025-09-24 16:55:58,437 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 16:55:58,439 | QAAgent | INFO | ILORA RETREATS QA agent initialized.
+2025-09-24 16:56:12,040 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 16:56:12,041 | QAAgent | INFO | ILORA RETREATS QA agent initialized.
+2025-09-24 17:09:53,875 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | I want my bath tub to be filled with snakes | I’m sorry, but I can’t help with that. | Intent: payment_request | Guest: True
+2025-09-24 17:13:33,025 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 17:13:33,026 | QAAgent | INFO | ILORA RETREATS QA agent initialized.
+2025-09-24 17:13:49,330 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 17:13:49,330 | QAAgent | INFO | ILORA RETREATS QA agent initialized.
+2025-09-24 17:13:59,487 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 17:13:59,488 | QAAgent | INFO | ILORA RETREATS QA agent initialized.
+2025-09-24 17:14:33,451 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | hello | Hello! Welcome to ILORA RETREATS. How may I assist you today? | Intent: greet | Guest: True
+2025-09-24 17:26:06,767 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 17:26:06,768 | QAAgent | INFO | ILORA RETREATS QA agent initialized.
+2025-09-24 17:26:18,526 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 17:26:18,530 | QAAgent | INFO | ILORA RETREATS QA agent initialized.
+2025-09-24 18:25:43,860 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 18:25:43,861 | QAAgent | INFO | ILORA RETREATS QA agent initialized.
+2025-09-24 18:26:18,951 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 18:26:18,952 | QAAgent | INFO | ILORA RETREATS QA agent initialized.
+2025-09-24 18:26:33,601 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-24 18:26:33,606 | QAAgent | INFO | ILORA RETREATS QA agent initialized.
+2025-09-25 15:15:29,563 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 15:15:29,563 | QAAgent | INFO | ILORA RETREATS QA agent initialized.
+2025-09-25 15:15:54,446 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 15:15:54,447 | QAAgent | INFO | ILORA RETREATS QA agent initialized.
+2025-09-25 15:16:14,340 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 15:16:14,341 | QAAgent | INFO | ILORA RETREATS QA agent initialized.
+2025-09-25 18:33:17,498 | web | INFO | web | guest | hello | Hello! Welcome to ILORA RETREATS. How may I assist you today? | Intent: greet
+2025-09-25 20:13:26,375 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:13:26,379 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:13:54,327 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:13:54,328 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:14:14,398 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:14:14,400 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:15:38,645 | QAAgent | INFO | Processed query at ILORA RETREATS: hello
+2025-09-25 20:15:38,652 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | hello | Hello! Welcome to ILORA RETREATS. How may I assist you today? | Intent: greet | Guest: True
+2025-09-25 20:17:52,041 | QAAgent | INFO | Processed query at ILORA RETREATS: What is your name
+2025-09-25 20:18:29,722 | QAAgent | INFO | Processed query at ILORA RETREATS: How many types of Wines do you have
+2025-09-25 20:21:06,497 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:21:06,498 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:21:27,284 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:21:27,287 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:21:39,204 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:21:39,206 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:22:14,114 | QAAgent | INFO | Processed query at ILORA RETREATS: hello
+2025-09-25 20:22:14,120 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | hello | Hello! Welcome to ILORA RETREATS. How may I assist you today? | Intent: greet | Guest: True
+2025-09-25 20:22:45,524 | QAAgent | INFO | Processed query at ILORA RETREATS: List down the menu for me
+2025-09-25 20:25:37,021 | QAAgent | ERROR | Error fetching sheet 'QnA_Manager' from https://script.google.com/macros/s/AKfycbwfh2HvU5E0Y0Ruv5Ylfwdh524c0PWLCU0NduferN4etm08ovIMO6WoFoJVszmQx__O/exec: HTTPSConnectionPool(host='script.google.com', port=443): Read timed out. (read timeout=15)
+2025-09-25 20:25:37,021 | QAAgent | WARNING | Could not load sheets on init: HTTPSConnectionPool(host='script.google.com', port=443): Read timed out. (read timeout=15). Falling back to vector store if available.
+2025-09-25 20:25:37,065 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-25 20:26:07,183 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-25 20:26:07,184 | QAAgent | INFO | FAISS vector store loaded as fallback retriever.
+2025-09-25 20:26:07,186 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-25 20:26:07,186 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:26:40,577 | QAAgent | ERROR | Error fetching sheet 'Campaigns_Manager' from https://script.google.com/macros/s/AKfycbwfh2HvU5E0Y0Ruv5Ylfwdh524c0PWLCU0NduferN4etm08ovIMO6WoFoJVszmQx__O/exec: HTTPSConnectionPool(host='script.google.com', port=443): Read timed out. (read timeout=15)
+2025-09-25 20:26:40,578 | QAAgent | WARNING | Could not load sheets on init: HTTPSConnectionPool(host='script.google.com', port=443): Read timed out. (read timeout=15). Falling back to vector store if available.
+2025-09-25 20:26:40,603 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-25 20:26:57,332 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-25 20:26:57,333 | QAAgent | INFO | FAISS vector store loaded as fallback retriever.
+2025-09-25 20:26:57,334 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:27:18,213 | QAAgent | ERROR | Error fetching sheet 'Dos and Donts' from https://script.google.com/macros/s/AKfycbwfh2HvU5E0Y0Ruv5Ylfwdh524c0PWLCU0NduferN4etm08ovIMO6WoFoJVszmQx__O/exec: HTTPSConnectionPool(host='script.google.com', port=443): Read timed out. (read timeout=15)
+2025-09-25 20:27:18,214 | QAAgent | WARNING | Could not load sheets on init: HTTPSConnectionPool(host='script.google.com', port=443): Read timed out. (read timeout=15). Falling back to vector store if available.
+2025-09-25 20:27:18,215 | QAAgent | INFO | FAISS vector store loaded as fallback retriever.
+2025-09-25 20:27:18,216 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-25 20:27:18,216 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:28:42,608 | QAAgent | ERROR | Error processing query at ILORA RETREATS 'hello': 'Document' object is not subscriptable
+2025-09-25 20:28:42,614 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | hello | We're sorry, there was an issue while assisting you. Please feel free to ask again or contact the ILORA RETREATS front desk for immediate help. | Intent: greet | Guest: True
+2025-09-25 20:29:53,188 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:29:53,189 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:30:24,968 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:30:24,969 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:30:48,801 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:30:48,803 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:31:19,187 | QAAgent | INFO | Processed query at ILORA RETREATS: hello
+2025-09-25 20:31:19,191 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | hello | Hello! Welcome to ILORA RETREATS. How may I assist you today? | Intent: greet | Guest: True
+2025-09-25 20:33:50,429 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:33:50,430 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:34:11,295 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:34:11,296 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:34:22,922 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:34:22,924 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:35:00,076 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:35:00,077 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:35:23,185 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:35:23,186 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:35:35,500 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.
+2025-09-25 20:35:35,501 | QAAgent | INFO | ILORA RETRIEATS QA agent initialized successfully.
+2025-09-25 20:36:38,086 | QAAgent | INFO | Processed query at ILORA RETREATS: hello
+2025-09-25 20:36:38,092 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | hello | Hello! Welcome to **ILORA RETREATS**. How may I assist you today? | Intent: greet | Guest: True
+2025-09-25 20:37:10,120 | QAAgent | INFO | Processed query at ILORA RETREATS: list down the menu
+2025-09-25 20:38:35,088 | QAAgent | INFO | Processed query at ILORA RETREATS: Order me a berry sorbet shots
+2025-09-25 20:38:43,079 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | Order me a berry sorbet shots | ```json
+["Berry Sorbet Shots"]
+```
+
+Would you like to confirm this order? | Intent: book_addon_food | Guest: True
+2025-09-25 20:40:38,274 | QAAgent | INFO | Processed query at ILORA RETREATS: what all types of wines do you have
+2025-09-25 20:41:49,958 | QAAgent | INFO | Processed query at ILORA RETREATS: what all alcoholic drinks do you offer
+2025-09-25 21:26:47,077 | QAAgent | INFO | Processed query at ILORA RETREATS: What all type of spa do you have
+2025-09-28 20:20:14,146 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-28 20:20:14,149 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-28 20:20:34,219 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-28 20:20:34,220 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-28 20:20:49,067 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-28 20:20:49,069 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-28 20:22:46,937 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-28 20:22:46,938 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-28 20:23:01,831 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-28 20:23:01,833 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-28 20:26:15,173 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-28 20:26:15,176 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-28 20:26:36,465 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-28 20:26:36,466 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-28 20:26:55,423 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-28 20:26:55,425 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-28 20:36:48,516 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-28 20:36:48,517 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-28 20:37:15,432 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-28 20:37:15,433 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-28 20:37:37,934 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-28 20:37:37,935 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-28 20:42:20,355 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-28 20:42:20,356 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-28 20:42:43,852 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-28 20:42:43,853 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-28 20:43:02,101 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-28 20:43:02,101 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 12:10:35,555 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 12:10:35,558 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 12:11:34,532 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 12:11:34,533 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 12:27:31,010 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 12:27:31,011 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 12:33:12,895 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 12:33:12,896 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 12:34:04,526 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 12:34:04,527 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 12:34:32,365 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 12:34:32,366 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 12:34:51,593 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 12:34:51,595 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 12:44:51,503 | QAAgent | ERROR | Error fetching sheet 'QnA_Manager' from https://script.google.com/macros/s/AKfycbxQjqqC_KM-zKlXAf2fs6B3jUjBBvuIES0a2VA4guZP0rZMR7A8JJGxDIUEzmcSZWFJ/exec: HTTPSConnectionPool(host='script.google.com', port=443): Read timed out. (read timeout=15)
+2025-09-29 12:44:51,504 | QAAgent | WARNING | Could not load sheets on init: HTTPSConnectionPool(host='script.google.com', port=443): Read timed out. (read timeout=15). Falling back to vector store if available.
+2025-09-29 12:44:51,554 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-29 12:45:14,418 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-29 12:45:14,420 | QAAgent | INFO | FAISS vector store loaded as fallback retriever.
+2025-09-29 12:45:14,421 | QAAgent | WARNING | Failed to load Do's & Don'ts file: Expecting value: line 1 column 1 (char 0)
+2025-09-29 12:45:14,422 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 12:45:40,054 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 12:45:40,055 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 12:46:01,456 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 12:46:01,458 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:00:50,244 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:00:50,245 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:01:06,954 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:01:06,955 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:02:15,663 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:02:15,664 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:03:54,626 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:03:54,627 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:04:12,394 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:04:12,394 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:04:27,050 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:04:27,052 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:09:55,279 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:09:55,281 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:10:08,579 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:10:08,583 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:10:48,434 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:10:48,435 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:11:01,097 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:11:01,098 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:11:59,055 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:11:59,056 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:12:16,370 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:12:16,371 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:12:27,859 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:12:27,860 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:26:30,134 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:26:30,135 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:26:44,188 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:26:44,189 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:33:07,216 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:33:07,217 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:36:18,103 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:36:18,103 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:37:14,844 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:37:14,845 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:38:10,996 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:38:10,997 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:39:05,394 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:39:05,395 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 14:39:49,317 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 14:39:49,319 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 15:39:35,547 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 15:39:35,547 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 15:39:53,003 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 15:39:53,004 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 15:40:05,864 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 15:40:05,865 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 15:45:02,799 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 15:45:02,800 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 15:45:25,919 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 15:45:25,920 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 15:45:40,061 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 15:45:40,062 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 15:52:21,628 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 15:52:21,629 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 15:53:00,527 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 15:53:00,528 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 15:53:13,819 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 15:53:13,821 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 15:59:31,850 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 15:59:31,851 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:00:47,868 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:00:47,869 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:01:08,374 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:01:08,375 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:01:19,846 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:01:19,848 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:05:05,467 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:05:05,467 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:05:26,538 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:05:26,539 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:05:38,517 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:05:38,518 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:10:33,761 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:10:33,762 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:10:54,736 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:10:54,738 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:11:08,561 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:11:08,562 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:43:58,578 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:43:58,579 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:44:11,325 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:44:11,327 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:45:02,346 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:45:02,347 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:45:20,089 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:45:20,090 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:45:35,274 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:45:35,277 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:59:08,626 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:59:08,627 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 16:59:27,424 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 16:59:27,425 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:02:31,722 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:02:31,723 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:03:10,047 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:03:10,048 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:03:32,250 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:03:32,251 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:10:58,444 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:10:58,445 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:11:25,028 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:11:25,029 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:11:39,408 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:11:39,411 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:15:02,523 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:15:02,524 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:15:25,267 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:15:25,267 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:15:42,062 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:15:42,063 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:24:08,471 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:24:08,472 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:24:29,500 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:24:29,501 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:24:41,103 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:24:41,104 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:39:44,106 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:39:44,107 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:40:15,069 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:40:15,070 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:40:28,006 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:40:28,008 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:46:18,558 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:46:18,559 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:46:41,894 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:46:41,895 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:46:55,140 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:46:55,141 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:56:07,615 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:56:07,616 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:56:25,503 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:56:25,504 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 17:56:37,180 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 17:56:37,181 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 20:49:06,320 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 20:49:06,323 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 20:49:36,238 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 20:49:36,238 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 20:49:52,281 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 20:49:52,282 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 21:59:28,719 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 21:59:28,720 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 21:59:58,007 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 21:59:58,008 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 22:00:17,944 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 22:00:17,945 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 22:48:20,572 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 22:48:20,574 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 22:48:35,215 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 22:48:35,218 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 22:59:51,883 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 22:59:51,884 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 23:00:19,222 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 23:00:19,223 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 23:00:40,418 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 23:00:40,419 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 23:10:14,171 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 23:10:14,172 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 23:10:42,536 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 23:10:42,537 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-29 23:11:11,504 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-29 23:11:11,509 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:00:19,198 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-30 00:00:19,199 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:00:46,175 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-30 00:00:46,176 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:01:01,423 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-30 00:01:01,424 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:04:39,030 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-30 00:04:39,030 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:05:07,462 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-30 00:05:07,463 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:05:23,778 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-30 00:05:23,780 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:06:56,450 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-30 00:06:56,451 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:07:28,818 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-30 00:07:28,819 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:07:51,587 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-30 00:07:51,589 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:10:25,246 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-30 00:10:25,247 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:10:57,708 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-30 00:10:57,709 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:11:11,543 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-30 00:11:11,544 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:13:49,739 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-30 00:13:49,740 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:14:14,270 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Clients from Google Sheets web app.
+2025-09-30 00:14:14,271 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 00:14:39,940 | QAAgent | ERROR | Error fetching sheet 'Client_workflow' from https://script.google.com/macros/s/AKfycbxQjqqC_KM-zKlXAf2fs6B3jUjBBvuIES0a2VA4guZP0rZMR7A8JJGxDIUEzmcSZWFJ/exec: HTTPSConnectionPool(host='script.google.com', port=443): Read timed out. (read timeout=15)
+2025-09-30 00:14:39,942 | QAAgent | WARNING | Could not load sheets on init: HTTPSConnectionPool(host='script.google.com', port=443): Read timed out. (read timeout=15). Falling back to vector store if available.
+2025-09-30 00:14:39,992 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-30 00:14:54,715 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-30 00:14:54,716 | QAAgent | INFO | FAISS vector store loaded as fallback retriever.
+2025-09-30 00:14:54,716 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 09:51:29,377 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 09:51:29,380 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 09:54:24,148 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 09:54:24,149 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 09:54:39,830 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 09:54:39,831 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 09:54:52,286 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 09:54:52,288 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 10:01:42,874 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 10:01:42,877 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 10:02:02,372 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 10:02:02,373 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 10:02:14,224 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 10:02:14,225 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 10:12:55,971 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 10:12:55,972 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 10:13:12,002 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 10:13:12,003 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 10:13:23,030 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 10:13:23,030 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 10:28:58,750 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 10:28:58,751 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 10:29:20,970 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 10:29:20,970 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 10:29:31,849 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 10:29:31,850 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 11:15:27,722 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 11:15:27,722 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 11:15:48,992 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 11:15:48,993 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 11:16:02,909 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 11:16:02,911 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 12:34:38,945 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 12:34:38,948 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 12:34:55,461 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 12:34:55,462 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 12:35:11,124 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 12:35:11,126 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 12:54:25,028 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 12:54:25,030 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 12:54:46,977 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 12:54:46,978 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 12:55:00,047 | QAAgent | INFO | Loaded QnA / Dos & Donts / Campaigns / Menu from Google Sheets web app.
+2025-09-30 12:55:00,048 | QAAgent | INFO | ILORA RETREATS QA agent initialized successfully.
+2025-09-30 13:05:58,914 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:05:58,915 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:06:24,952 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:06:24,953 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:06:36,511 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:06:36,512 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:09:42,670 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:09:42,671 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:10:11,380 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:10:11,381 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:10:23,294 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:10:23,296 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:16:22,227 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:16:22,229 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:16:45,999 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:16:45,999 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:16:57,073 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:16:57,074 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:21:53,017 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:21:53,018 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:22:20,852 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:22:20,855 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:22:33,193 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:22:33,194 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:31:53,619 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | bring a hibiscus tea to my room | ["Hibiscus Tea"] | Intent: payment_request | Guest: True
+2025-09-30 13:32:03,116 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | confirm | ["Hibiscus Tea"] | Intent: greet | Guest: True
+2025-09-30 13:32:24,324 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | order me a coffee to my room | Sure thing, Karan! Which coffee would you like to have delivered to your room? Here are the options we have available:
+
+- Single Espresso  
+- Double Espresso  
+- Americano  
+- Mocha  
+- Café Latte  
+- Cappuccino  
+- Macchiato  
+- Iced Coffee  
+- French Press  
+
+Just let me know your choice, and I’ll confirm the order for you. | Intent: payment_request | Guest: True
+2025-09-30 13:32:40,645 | web | INFO | web | d0c2a72b-1042-42dc-b072-45bc8c34779e | I want a single espresso right away | ["Single Espresso"] | Intent: payment_request | Guest: True
+2025-09-30 13:39:04,241 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:39:04,242 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:39:14,082 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:39:14,083 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:53:39,015 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:53:39,016 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:53:53,563 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:53:53,564 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 13:54:05,027 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 13:54:05,028 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 14:21:40,630 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 14:21:40,631 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 14:21:58,948 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 14:21:58,949 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 14:22:11,027 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 14:22:11,029 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 14:39:59,118 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 14:39:59,119 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 14:40:16,502 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 14:40:16,502 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 14:40:25,768 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 14:40:25,769 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 15:00:54,146 | QAAgent | WARNING | Sheets load failed: HTTPSConnectionPool(host='script.google.com', port=443): Read timed out. (read timeout=7.0), using vector fallback.
+2025-09-30 15:00:54,211 | VectorStoreService | INFO | Loaded 786 Q&A documents from data\qa_pairs.csv
+2025-09-30 15:01:13,983 | VectorStoreService | INFO | Vector store created with embeddings: sentence-transformers/all-MiniLM-L6-v2
+2025-09-30 15:01:13,984 | QAAgent | INFO | FAISS retriever loaded.
+2025-09-30 15:01:13,985 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 15:01:33,118 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 15:01:33,119 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.
+2025-09-30 15:01:43,872 | QAAgent | INFO | Loaded Sheets data on init.
+2025-09-30 15:01:43,874 | QAAgent | INFO | ILORA RETREATS ConciergeBot ready.

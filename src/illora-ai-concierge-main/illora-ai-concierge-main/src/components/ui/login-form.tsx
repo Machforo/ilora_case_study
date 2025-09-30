@@ -8,15 +8,17 @@ import { Eye, EyeOff, User } from "lucide-react";
 interface LoginFormProps {
   onLogin: (credentials: { email: string; password: string }) => void;
   isLoading?: boolean;
+  onSwitch?: () => void; // Add onSwitch prop for signup
 }
 
-export function LoginForm({ onLogin, isLoading }: LoginFormProps) {
+export function LoginForm({ onLogin, isLoading, onSwitch }: LoginFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isLoading) return; // Prevent multiple submissions
     onLogin({ email, password });
   };
 
@@ -27,7 +29,7 @@ export function LoginForm({ onLogin, isLoading }: LoginFormProps) {
           <div className="mx-auto mb-4 w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center">
             <User className="w-8 h-8 text-white" />
           </div>
-          <CardTitle className="text-2xl font-bold text-hotel-primary">Welcome to ILLORA Retreat</CardTitle>
+          <CardTitle className="text-2xl font-bold text-hotel-primary">Welcome to ILORA Retreats</CardTitle>
           <CardDescription>Sign in to access your AI concierge</CardDescription>
         </CardHeader>
         <CardContent>
@@ -75,8 +77,18 @@ export function LoginForm({ onLogin, isLoading }: LoginFormProps) {
               {isLoading ? "Signing in..." : "Sign In"}
             </Button>
           </form>
+          <div className="mt-4 text-center">
+            <span className="text-gray-600 text-sm">Don't have an account?</span>
+            <button
+              type="button"
+              className="ml-2 text-primary font-medium hover:underline text-sm"
+              onClick={onSwitch}
+            >
+              Sign up
+            </button>
+          </div>
         </CardContent>
-      </Card>
+  </Card>
     </div>
   );
 }

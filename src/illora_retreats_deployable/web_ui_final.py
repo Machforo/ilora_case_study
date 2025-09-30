@@ -123,10 +123,24 @@ def get_user_by_token(token, USER_DB_PATH):
     return row
 
 def ensure_user(email, password, USER_DB_PATH):
+    """Create a new user or verify existing user's credentials"""
     conn = sqlite3.connect(USER_DB_PATH)
     c = conn.cursor()
-    c.execute("INSERT OR IGNORE INTO users(email, password) VALUES(?,?)", (email, password))
-    conn.commit()
+    
+    # First check if user exists
+    c.execute("SELECT email, password FROM users WHERE email=?", (email,))
+    existing_user = c.fetchone()
+    
+    if existing_user:
+        # User exists, verify password
+        if existing_user[1] != password:
+            conn.close()
+            raise ValueError("Invalid credentials")
+    else:
+        # Create new user
+        c.execute("INSERT INTO users(email, password) VALUES(?,?)", (email, password))
+        conn.commit()
+    
     conn.close()
 
 def set_booked(email, booked: int, USER_DB_PATH):

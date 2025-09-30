@@ -8,6 +8,11 @@ class Config:
     Central configuration for AI Chieftain
     """
 
+    GSHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxQjqqC_KM-zKlXAf2fs6B3jUjBBvuIES0a2VA4guZP0rZMR7A8JJGxDIUEzmcSZWFJ/exec"
+    GSHEET_QNA_SHEET = "QnA_Manager"
+    GSHEET_DOS_SHEET = "Dos and Donts"
+    GSHEET_CAMPAIGN_SHEET = "Campaigns_Manager"
+
     # ------------------------
     # LLM Provider (switch between "openai" and "groq")
     # ------------------------

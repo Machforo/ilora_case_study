@@ -1,0 +1,381 @@
+# qa_agent.py (updated to read from Google Sheets webapp + fallback to existing vector store)
+from typing import Optional, List, Dict, Any
+# from azure.ai.inference import ChatCompletionsClient
+# from azure.ai.inference.models import SystemMessage, UserMessage
+# from azure.core.credentials import AzureKeyCredential
+from langchain_openai import ChatOpenAI
+from vector_store import create_vector_store
+from config import Config
+from logger import setup_logger
+import os
+import json
+import requests
+import time
+import re
+import difflib
+
+logger = setup_logger("QAAgent")
+
+
+def _normalize_text(s: str) -> str:
+    if not s:
+        return ""
+    # Lowercase, remove punctuation (keep alphanum and spaces)
+    s = s.lower()
+    s = re.sub(r"[^a-z0-9\s]", " ", s)
+    s = re.sub(r"\s+", " ", s).strip()
+    return s
+
+
+class ConciergeBot:
+    def __init__(self):
+        try:
+            # --- Configurable Google Sheets Web App endpoint (Apps Script) ---
+            # This should be the deployed Apps Script "web app" URL (not the raw spreadsheet URL).
+            # Example: https://script.google.com/macros/s/XXXX/exec
+            self.sheet_api = getattr(Config, "GSHEET_WEBAPP_URL", "https://script.google.com/macros/s/AKfycbwfh2HvU5E0Y0Ruv5Ylfwdh524c0PWLCU0NduferN4etm08ovIMO6WoFoJVszmQx__O/exec")
+
+            # Sheet/tab names (override via Config if needed)
+            self.qna_sheet = getattr(Config, "GSHEET_QNA_SHEET", "QnA_Manager")
+            self.dos_sheet = getattr(Config, "GSHEET_DOS_SHEET", "Dos and Donts")
+            self.campaign_sheet = getattr(Config, "GSHEET_CAMPAIGN_SHEET", "Campaigns_Manager")
+            self.menu_sheet = getattr(Config, "GSHEET_MENU_SHEET", "menu_manager")
+            
+            print('##################')
+            print(self.menu_sheet)
+            print('#################')
+
+            
+
+            # Retriever params
+            self.retriever_k = getattr(Config, "RETRIEVER_K", 5)
+
+            # If sheet API is not provided, fallback to the existing vector store approach
+            self.use_sheet = bool(self.sheet_api)
+
+            # LLM (keeps same wrapper you were using)
+            self.llm = ChatOpenAI(
+                api_key=Config.OPENAI_API_KEY,
+                model=Config.OPENAI_MODEL,
+                base_url=Config.GROQ_API_BASE,
+                temperature=0,
+            )
+
+            # Storage for freshly fetched sheet data
+            self.qna_rows: List[Dict[str, Any]] = []
+            self.dos_donts: List[Dict[str, str]] = []
+            self.campaigns: List[Dict[str, Any]] = []
+            self.menu_rows: List[Dict[str, Any]] = []
+
+            # If using sheet source, try to fetch now (non-fatal)
+            if self.use_sheet:
+                try:
+                    self._refresh_sheets()
+                    logger.info("Loaded QnA / Dos & Donts / Campaigns from Google Sheets web app.")
+                except Exception as e:
+                    logger.warning(f"Could not load sheets on init: {e}. Falling back to vector store if available.")
+                    # fallback to vector store creation below
+                    self.use_sheet = False
+
+            # Fallback: if not using sheet, build the vector store as before
+            if not self.use_sheet:
+                try:
+                    self.vector_store = create_vector_store()
+                    k = getattr(Config, "RETRIEVER_K", 5)
+                    fetch_k = getattr(Config, "RETRIEVER_FETCH_K", 20)
+                    self.retriever = self.vector_store.as_retriever(
+                        search_type="mmr", search_kwargs={"k": k, "fetch_k": fetch_k}
+                    )
+                    logger.info("FAISS vector store loaded as fallback retriever.")
+                except Exception as e:
+                    logger.error(f"Error initializing vector store fallback: {e}")
+                    # allow continued operation; ask() will report friendly error if both methods fail
+                    self.retriever = None
+
+            # Load Do's & Don'ts from file as additional fallback (if sheet not used)
+            if not self.dos_donts:
+                self.dos_donts_path = os.path.join("data", "dos_donts.json")
+                self.dos_donts = self._load_dos_donts_from_file()
+
+            logger.info("ILORA RETRIEATS QA agent initialized successfully.")
+
+        except Exception as e:
+            logger.error(f"Error initializing QA agent: {e}")
+            raise
+
+    # ---------------------
+    # Sheet fetching methods
+    # ---------------------
+    def _fetch_sheet_data(self, sheet_name: str) -> List[Dict[str, Any]]:
+        """
+        Calls the deployed Apps Script web app and returns the list of row objects for the sheet.
+        The web app must implement ?action=getSheetData&sheet=<sheetName> (matching your provided Apps Script).
+        """
+        if not self.sheet_api:
+            raise RuntimeError("GSHEET_WEBAPP_URL is not configured in Config.")
+
+        params = {"action": "getSheetData", "sheet": sheet_name}
+        try:
+            resp = requests.get(self.sheet_api, params=params, timeout=15)
+            resp.raise_for_status()
+            data = resp.json()
+            # Data should be a list of objects (one per row). If the webapp returns {error:...}, raise.
+            if isinstance(data, dict) and data.get("error"):
+                raise RuntimeError(f"Sheets webapp returned error: {data.get('error')}")
+            if not isinstance(data, list):
+                # sometimes the webapp might wrap results; be permissive
+                raise RuntimeError("Unexpected sheet response format (expected list of row objects).")
+            return data
+        except Exception as e:
+            logger.error(f"Error fetching sheet '{sheet_name}' from {self.sheet_api}: {e}")
+            raise
+
+    def _refresh_sheets(self):
+        """Refresh QnA rows, Dos & Donts and Campaigns lists from the Sheets webapp."""
+        # QnA
+        self.qna_rows = self._fetch_sheet_data(self.qna_sheet) or []
+        # Dos & Donts
+        raw_dos = self._fetch_sheet_data(self.dos_sheet) or []
+        processed = []
+        for row in raw_dos:
+            # try to normalize many possible header names: "Do", "do", "Do's", "Dont", etc.
+            do_val = row.get("Do") or row.get("do") or row.get("Do's") or row.get("Do_s") or row.get("Do / Don't") or ""
+            dont_val = row.get("Don't") or row.get("Dont") or row.get("dont") or row.get("Don'ts") or row.get("Dont_s") or ""
+            processed.append({"do": str(do_val).strip(), "dont": str(dont_val).strip()})
+        self.dos_donts = processed
+
+        # Campaigns (store raw)
+        self.campaigns = self._fetch_sheet_data(self.campaign_sheet) or []
+
+        # Menu (store raw)
+        self.menu = self._fetch_sheet_data(self.menu_sheet) or []
+
+    def _load_dos_donts_from_file(self) -> List[Dict[str, str]]:
+        """Fallback loader for dos_donts.json (keeps backward compatibility)."""
+        path = getattr(self, "dos_donts_path", os.path.join("data", "dos_donts.json"))
+        if not os.path.exists(path):
+            return []
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            logger.warning(f"Failed to load Do's & Don'ts file: {e}")
+            return []
+
+    # ---------------------
+    # Lightweight retrieval (sheet mode)
+    # ---------------------
+    def _row_to_doc_text(self, row: Dict[str, Any]) -> str:
+        """
+        Convert a QnA row (arbitrary headers) into a reasonable concatenated text used for retrieval/prompts.
+        We try to pick common column names; if not present, we simply join all values.
+        """
+        # common header possibilities for QnA: 'Question', 'Q', 'Query', 'Prompt' and 'Answer', 'A', 'Response'
+        question_keys = ["question", "q", "query", "prompt"]
+        answer_keys = ["answer", "a", "response", "reply", "solution"]
+
+        items = []
+        # find question-like field
+        for k in row.keys():
+            low = k.strip().lower()
+            if low in question_keys:
+                val = row.get(k, "")
+                if val:
+                    items.append(f"Q: {val}")
+                break
+        # find answer-like field
+        for k in row.keys():
+            low = k.strip().lower()
+            if low in answer_keys:
+                val = row.get(k, "")
+                if val:
+                    items.append(f"A: {val}")
+                break
+
+        # if not found, join first two columns (useful fallback)
+        if not items:
+            # join all values
+            joined = " | ".join(str(v) for v in row.values() if v)
+            if joined:
+                items.append(joined)
+
+        return "\n".join(items)
+
+    def _score_doc(self, doc_text: str, query: str) -> float:
+        """
+        A simple (fast) relevance score between doc_text and query:
+        - normalized token overlap combined with sequence similarity.
+        """
+        if not query or not doc_text:
+            return 0.0
+        nq = _normalize_text(query)
+        nd = _normalize_text(doc_text)
+        q_tokens = set(nq.split())
+        d_tokens = set(nd.split())
+        if not q_tokens or not d_tokens:
+            return 0.0
+        overlap = len(q_tokens & d_tokens) / max(1, min(len(q_tokens), len(d_tokens)))
+        seq_ratio = difflib.SequenceMatcher(None, nd, nq).ratio()
+        # weighted combination
+        score = 0.65 * overlap + 0.35 * seq_ratio
+        return float(score)
+
+    def _retrieve_from_sheets(self, query: str, k: Optional[int] = None) -> List[Dict[str, Any]]:
+        """
+        Retrieve top-k rows from the QnA sheet using a lightweight scoring function.
+        Returns list of dicts with `page_content` for compatibility with previous code.
+        """
+        k = k or self.retriever_k
+        if not self.qna_rows:
+            return []
+
+        scored = []
+        for row in self.qna_rows:
+            doc_text = self._row_to_doc_text(row)
+            score = self._score_doc(doc_text, query)
+            scored.append((score, doc_text, row))
+
+        # sort by score desc and pick top k
+        scored.sort(key=lambda x: x[0], reverse=True)
+        selected = scored[:k]
+        results = []
+        for score, doc_text, row in selected:
+            results.append({
+                "page_content": doc_text,
+                "score": score,
+                "metadata": row,
+            })
+        return results
+
+    # ---------------------
+    # Prompt builder & ask API
+    # ---------------------
+    def _build_prompt(self, hotel_data: str, query: str) -> str:
+        """
+        Construct the system prompt combining branding + hotel data + rules.
+        Reads agent name from data/agents.json if present (keeps your original behavior).
+        """
+        agent_name = "AI Assistant"
+        agents_file = os.path.join("data", "agents.json")
+        try:
+            if os.path.exists(agents_file):
+                with open(agents_file, "r", encoding="utf-8") as f_new_1:
+                    agents = json.load(f_new_1)
+                for agent in agents:
+                    if agent.get("Name") == "Front Desk":
+                        agent_name = agent.get("agent_name", agent_name)
+        except Exception:
+            # ignore and continue with defaults
+            pass
+
+        # Build rules text from dos_donts (sheet or file)
+        rules_text = ""
+        if self.dos_donts:
+            rules_text = "\n\n📋 **Important Communication Rules:**\n"
+            for idx, entry in enumerate(self.dos_donts, start=1):
+                do = str(entry.get("Description", "")).strip()
+                dont = str(entry.get("dont", "")).strip()
+                if do:
+                    rules_text += f"- ✅ Do: {do}\n"
+                if dont:
+                    rules_text += f"- ❌ Don't: {dont}\n"
+
+        # Optionally include high-level campaigns summary (if any)
+        campaigns_text = ""
+        if self.campaigns:
+            campaigns_text = "\n\n📣 **Active Campaigns / Promos (summary):**\n"
+            for c in self.campaigns[:5]:
+                # try to pick a title/description
+                title = c.get("Name") or c.get("Name") or c.get("Name") or c.get("Name") or ""
+                desc = c.get("Name") or c.get("Name") or c.get("Name") or ""
+                if title or desc:
+                    campaigns_text += f"- {title} {('- ' + desc) if desc else ''}\n"
+
+        menu_text = ""
+        if self.menu:
+            menu_text = "\n\n\n📣 **Menu / Item / Price / Description:**\n"
+            for c in self.menu[:]:
+                # try to pick a title/description
+                type = c.get("Type") or c.get("Type") or c.get("Type") or c.get("Type") or ""
+                item = c.get("Item") or c.get("Item") or c.get("Item") or ""
+                price = c.get("Price") or "0"
+                desc = c.get("Descripton") or ""
+                if title or desc:
+                    menu_text += f"- {type} {('- ' + desc) if desc else ''} {('- ' + item) if item else ''} {('- ' + price) if price else ''} {('- ' + desc) if desc else ''}\n"
+                
+            print(menu_text)
+
+        return (
+            f"You are an AI agent named {agent_name}, a knowledgeable, polite, and concise concierge assistant at *ILORA RETREATS*, "
+            "a premium hotel known for elegant accommodations, gourmet dining, rejuvenating spa treatments, "
+            "a fully-equipped gym, pool access, 24x7 room service, meeting spaces, and personalized hospitality.\n\n"
+            "Answer most questions using the Hotel Data and the Menu given below. If the data does not contain the answer you can draw on general knowledge, "
+            "but remember **DO NOT MAKE ANY FALSE FACTS**.\n\n"
+            f"Agent Name:\n{agent_name}\n\n"
+            f"Hotel Data (most relevant excerpts):\n{hotel_data}\n\n"
+            f"Menu : \n{menu_text}\n\n"
+            "If user is ordering food, return ONLY JSON array of the respective dishes. For example types of coffee etc."
+            "Ask for confirmation --> When he confirms the order then raise the ticket"
+            f"Guest Query: {query}\n"
+            f"{rules_text}"
+            f"{campaigns_text}"
+        )
+
+    def ask(self, query: str, user_type: Optional[str] = None) -> str:
+        try:
+            restricted_services = [
+                "wake-up call", "spa", "gym", "pool", "room service", "book a room", "booking"
+            ]
+            lower_query = (query or "").lower()
+
+            # Block restricted queries for non-guests
+            if user_type == "non-guest" and any(term in lower_query for term in restricted_services):
+                return (
+                    "We're sorry, this service is exclusive to *guests* at ILORA RETREATS.\n"
+                    "Feel free to explore our dining options, events, and lobby amenities!"
+                )
+
+            # If using sheet mode, fetch fresh data and retrieve using lightweight scorer
+            docs = []
+            if self.use_sheet:
+                try:
+                    # ensure freshest data every call (you can change this to cache/TTL if you prefer)
+                    self._refresh_sheets()
+                    docs = self._retrieve_from_sheets(query, k=self.retriever_k)
+                except Exception as e:
+                    logger.warning(f"Error retrieving from sheets: {e}. Attempting fallback retriever if available.")
+                    docs = []
+
+            # Fallback to vector store retriever if sheet-mode isn't used or returned empty
+            if (not docs or len(docs) == 0) and getattr(self, "retriever", None):
+                try:
+                    docs = self.retriever.invoke(query)
+                    # normalize to expected structure if necessary
+                    docs = docs if docs else []
+                except Exception as e:
+                    logger.warning(f"Fallback retriever error: {e}")
+                    docs = []
+
+            hotel_data = "\n\n".join(d['page_content'] for d in docs) if docs else ""
+
+            # Build system prompt with rules
+            system_prompt = self._build_prompt(hotel_data, query)
+            # debug print kept (you can remove these prints in production)
+            print(system_prompt)
+
+            # Call the LLM directly (keeps same interface you used before)
+            response = self.llm.invoke(system_prompt)
+            print(response)
+
+            final_answer = response.content.strip() if hasattr(response, "content") else str(response)
+
+            logger.info(f"Processed query at ILORA RETREATS: {query}")
+            return final_answer or "I'm here to help with any questions about ILORA RETREATS."
+
+        except Exception as e:
+            print(f"Error processing query at ILORA RETREATS '{query}': {e}")
+            logger.error(f"Error processing query at ILORA RETREATS '{query}': {e}")
+            return (
+                "We're sorry, there was an issue while assisting you. "
+                "Please feel free to ask again or contact the ILORA RETREATS front desk for immediate help."
+            )

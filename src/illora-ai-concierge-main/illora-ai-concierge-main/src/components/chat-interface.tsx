@@ -11,7 +11,7 @@ import ReactMarkdown from "react-markdown";
  * Default API base — matches your main.py default.
  * Override with REACT_APP_API_BASE or NEXT_PUBLIC_API_BASE env var if needed.
  */
-const API_URL = import.meta.env.VITE_API_URL || "https://api.webisdomtech.com/";
+const API_BASE = "http://localhost:8000";
 
 /* ---------------------- Helpers ---------------------- */
 function isoDateOnly(d?: string | Date): string | null {
@@ -85,8 +85,6 @@ interface Message {
 /* ---------------------- Booking Form ---------------------- */
 function BookingForm({ onSubmit, initial }: { onSubmit: (d: any) => void; initial?: any }) {
   const [form, setForm] = useState({
-    room_id: initial?.room_id || "",
-    room_type: initial?.room_type || "",
     check_in: initial?.check_in || "",
     check_out: initial?.check_out || "",
     guest_name: initial?.guest_name || "",
@@ -104,11 +102,6 @@ function BookingForm({ onSubmit, initial }: { onSubmit: (d: any) => void; initia
       className="space-y-3"
     >
       <Input
-        placeholder="Room ID (numeric)"
-        value={form.room_id}
-        onChange={(e) => setForm({ ...form, room_id: e.target.value })}
-      />
-      <Input
         type="date"
         value={form.check_in}
         onChange={(e) => setForm({ ...form, check_in: e.target.value })}
@@ -117,11 +110,6 @@ function BookingForm({ onSubmit, initial }: { onSubmit: (d: any) => void; initia
         type="date"
         value={form.check_out}
         onChange={(e) => setForm({ ...form, check_out: e.target.value })}
-      />
-      <Input
-        placeholder="Room Type (optional)"
-        value={form.room_type}
-        onChange={(e) => setForm({ ...form, room_type: e.target.value })}
       />
       <Input
         placeholder="Full name"
@@ -152,7 +140,7 @@ export function ChatInterface({ className }: { className?: string }) {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: `welcome-${Date.now()}`,
-      content: "Hello! Welcome to ILLORA RETREAT. I'm your concierge. How may I assist you today?",
+      content: "Hello! Welcome to ILORA RETREATS. I'm your concierge. How may I assist you today?",
       sender: "bot",
       timestamp: new Date().toISOString(),
       type: "text",
@@ -565,7 +553,7 @@ export function ChatInterface({ className }: { className?: string }) {
   return (
     <div className={`flex flex-col h-full ${className || ""}`}>
       <div className="px-4 pt-3 flex items-center gap-3">
-        <div className="text-lg font-semibold">ILLORA Concierge</div>
+        <div className="text-lg font-semibold">ILORA Retreats Concierge</div>
         <div className="text-sm text-muted-foreground">Session: {sessionIdRef.current?.slice(0, 8) ?? "—"}</div>
         <div className="ml-auto">
           <Input
@@ -707,7 +695,7 @@ export function ChatInterface({ className }: { className?: string }) {
             ref={(el) => (inputRef.current = el)}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Ask me anything about ILLORA Retreat..."
+            placeholder="Ask me anything about ILORA Retreats..."
             className="flex-1 h-12 rounded-full px-4"
             disabled={isTyping}
           />
