@@ -1030,4 +1030,4 @@ async def chat(req: ChatReq):
 # ------------------------- Run locally -------------------------
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main_final:app", host="0.0.0.0", port=int(os.environ.get("PORT", 8002)), reload=True)
+    uvicorn.run("main_final:app", host="0.0.0.0", port=int(os.environ.get("PORT", 8000)), reload=True)
