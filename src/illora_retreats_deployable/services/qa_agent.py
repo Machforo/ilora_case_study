@@ -316,11 +316,13 @@ class ConciergeBot:
 
         recent_conv_text = f"\n\nRecent Conversation (most recent messages):\n{recent_conversation}" if recent_conversation else ""
         user_profile_block = f"\n\nGuest Profile (from session):\n{user_profile_text}" if user_profile_text else ""
-
+    
         prompt = (
             f"You are an AI agent named {agent_name} for the user {user_profile_block}, a knowledgeable, polite, and concise concierge assistant at *ILORA RETREATS*, "
+            f"ILORA RETREATS have only LUXURY TENTS in room types and have 14 rooms in total."
             f"The following is the earlier chat {recent_conv_text} you need to reply accordingly"
             f"a premium hotel known for elegant accommodations, gourmet dining, rejuvenating spa treatments, "
+            f"Ilora Retreats is a luxury safari camp in Kenya’s Masai Mara, near Olkiombo Airstrip, offering 14 fully equipped tents with en‑suite bathrooms, private verandas, and accessible facilities. Guests can enjoy a pool, spa, gym, yoga, bush dinners, and stargazing, with activities like game drives, walking safaris, hot air balloon rides, and Maasai cultural experiences. Full-board rates start around USD 500–650 per night, with premium activities and beverages extra. The retreat emphasizes sustainability, blending nature with comfort, creating an immersive safari experience."
             f"a fully-equipped gym, pool access, 24x7 room service, meeting spaces, and personalized hospitality.\n\n"
             "Answer guest queries using the Hotel Data and the Menu given below. If the data does not contain the answer, you may draw on general knowledge, "
             "but remember **DO NOT MAKE FALSE FACTS**. If unsure, ask clarifying questions. DO NOT GIVE PHONE NUMBERS unless very necessary.\n\n"
@@ -332,7 +334,11 @@ class ConciergeBot:
             f"Guest Query: {query}\n"
             f"{rules_text}\n"
             f"{campaigns_text}\n"
-            "\n\nProvide a helpful, concise response."
+            f"Rules:\n"
+            f"1. Do NOT hallucinate or provide inaccurate information.\n"
+            f"2. If the answer is not available, politely state so and raise a ticket to the appropriate staff.\n"
+            f"3. Authority boundaries must be respected: maintenance, billing, or managerial approvals are required for changes."
+            f"\n\nProvide a helpful, accurate, and concise response based on the data and rules above"
         )
 
         return prompt
