@@ -1,149 +1,24 @@
-import os
-import uuid
-import json
-import random
-import logging
-import asyncio
-import requests
-from typing import List, Optional, Dict, Any, Generator
-from datetime import date, datetime, timedelta
-
-from fastapi import FastAPI, Depends, UploadFile, File, HTTPException, Query, Request, Body
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
-from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel, Field
-from config import Config
-
-# ------------------------- Logging setup -------------------------
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-# ------------------------- FastAPI app -------------------------
-app = FastAPI(title="AI Chieftain API", version="1.0.0")
-
-# ------------------------- CORS -------------------------
-FRONTEND_ORIGINS = [
-    "http://localhost:8080",
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=FRONTEND_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allow_headers=["*"],
-    expose_headers=["*"],
-)
-
-# ------------------------- Google Sheets Configuration -------------------------
-GSHEET_WEBAPP_URL = getattr(Config, "GSHEET_WEBAPP_URL", None)
-if not GSHEET_WEBAPP_URL:
-    raise RuntimeError("GSHEET_WEBAPP_URL not configured in Config")
-
-# ------------------------- Helper Functions -------------------------
-def push_row_to_sheet(sheet_name: str, row_data: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Call Apps Script webapp to add a row to the specified sheet
-    """
-    logger.info(f"Pushing data to sheet {sheet_name}: {row_data}")
-    payload = {"action": "addRow", "sheet": sheet_name, "rowData": row_data}
-    
-    try:
-        resp = requests.post(GSHEET_WEBAPP_URL, json=payload, timeout=10)
-        resp.raise_for_status()
-        try:
-            return resp.json()
-        except ValueError:
-            if resp.status_code == 200:
-                return {"success": True, "status_code": 200}
-            return {"success": False, "message": "Invalid JSON response"}
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Error pushing to sheet: {e}")
-        return {"success": False, "message": str(e)}
-
-# ------------------------- Auth Models -------------------------
-class SignupReq(BaseModel):
-    name: str = Field(..., min_length=2, description="User's full name")
-    username: str = Field(..., min_length=3, description="User's email address")
-    password: str = Field(..., min_length=6, description="User's password")
-    phoneNo: str = Field(default="", description="User's phone number")
-
-# ------------------------- Auth Endpoints -------------------------
-@app.post("/auth/signup", tags=["authentication"])
-async def signup(req: SignupReq = Body(...)):
-    """
-    Register a new user and add them to the Client_workflow sheet
-    """
-    logger.info(f"Received signup request for username: {req.username}")
-    
-    try:
-        # Generate unique Client Id (e.g., ILR-YYYY-XXXX)
-        client_id = f"ILR-{datetime.utcnow().year}-{random.randint(1000,9999)}"
-        workflow_stage = "Registered"
-        
-        # Prepare row data for Client_workflow sheet
-        row_data = {
-            "Client Id": client_id,
-            "Name": req.name,
-            "Username": req.username,
-            "Password": req.password,
-            "Booking Id": "",
-            "Workflow Stage": workflow_stage,  # Fixed typo in key name
-            "Room Alloted": "",
-            "CheckIn": "",
-            "Check Out": "",
-            "Id Link": "",
-        }
-        
-        # Add user to Google Sheet
-        resp = push_row_to_sheet("Client_workflow", row_data)
-        
-        if resp.get("success") or resp.get("ok") or resp.get("status_code") == 200:
-            logger.info(f"User {req.username} registered successfully with client ID {client_id}")
-            return {
-                "success": True,
-                "workflowStage": workflow_stage,
-                "clientId": client_id,
-                "message": "Registration successful"
-            }
-        else:
-            error_msg = resp.get("message", "Unknown error during registration")
-            logger.error(f"Failed to register user {req.username}: {error_msg}")
-            raise HTTPException(status_code=400, detail=error_msg)
-            
-    except Exception as e:
-        logger.error(f"Error in signup endpoint: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
-from fastapi import Body
-
-# ...existing code...
-
-
-# ...existing code...
-
-
+# main_final.py
+## importing essential libraries
 
 import os
 import uuid
 import json
 import random
 import logging
-import asyncio
 from typing import List, Optional, Dict, Any
-from datetime import date, datetime, timedelta
-
-from fastapi import FastAPI, Depends, UploadFile, File, HTTPException, Query, Request
+from datetime import datetime
+import httpx
+import requests
+import re
+from fastapi import FastAPI, HTTPException, Body, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
+
 from config import Config
 
-# Project imports
+# Project imports (kept)
 import web_ui_final as web
 from services.intent_classifier import classify_intent
 from logger import log_chat
@@ -164,27 +39,29 @@ from illora.checkin_app.chat_models import ChatMessage
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 
-# ------------------------- Logging -------------------------
+#########################################################################
+
+# ------------------------- Logging setup -------------------------
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("ai_chieftain")
+logger = logging.getLogger(__name__)
 
 # ------------------------- FastAPI app -------------------------
 app = FastAPI(title="AI Chieftain API", version="1.0.0")
 
-# ------------------------- CORS -------------------------
-FRONTEND_ORIGINS = [
-    "http://localhost:8080",
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-]
+# ------------------------- Constants -------------------------
+CLIENT_WORKFLOW_SHEET = "Client_workflow"
 
-# Add CORS middleware to enable cross-origin requests
+# ------------------------- CORS -------------------------
+FRONTEND_ORIGINS =  "https://ilora-demo-799523984969.us-central1.run.app/"
+
+   
+
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=FRONTEND_ORIGINS,
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_methods=["*"],
     allow_headers=["*"],
     expose_headers=["*"],
 )
@@ -197,31 +74,438 @@ app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 # ------------------------- Concierge bot -------------------------
 bot = ConciergeBot()
 
-# ------------------------- Demo in-memory data -------------------------
-DEMO_NAMES = [
-    "John Doe", "Jane Smith", "Michael Johnson", "Emily Davis",
-    "Daniel Wilson", "Sophia Martinez", "James Brown", "Olivia Taylor",
-    "Liam Anderson", "Ava Thomas", "Noah Jackson", "Isabella White",
-    "Ethan Harris", "Mia Clark", "Alexander Lewis", "Amelia Hall",
-    "William Young", "Charlotte King", "Benjamin Wright", "Harper Scott"
-]
-DEMO_ROOM_TYPES = ["Deluxe Suite", "Executive Room", "Standard Room", "Presidential Suite"]
+# In-memory user session store
+USER_SESSIONS: Dict[str, Dict[str, Any]] = {}
+
+
+###########################################################################
+# ------------------------- Models -------------------------
+class SignupReq(BaseModel):
+    name: str = Field(..., min_length=2)
+    username: str = Field(..., min_length=3)
+    password: str = Field(..., min_length=6)
+    phoneNo: str = Field(default="")
+
+class LoginReq(BaseModel):
+    username: str = Field(..., description="User's username/email")
+    password: str = Field(..., description="User's password")
+    remember: bool = Field(default=True)
+
+class UpdateWorkflowReq(BaseModel):
+    username: str
+    stage: str
+    booking_id: Optional[str] = None
+    id_proof_link: Optional[str] = None
+
+class MeReq(BaseModel):
+    username: Optional[str] = None
+    remember_token: Optional[str] = None
+
+###########################################################################
+# ------------------------- Helpers / debug utils -------------------------
+def _normalize_key(k: Any) -> str:
+    return "".join(ch.lower() for ch in str(k) if ch.isalnum())
+
+def _parse_float(val: Any) -> float:
+    if val is None or str(val).strip() == "":
+        return 0.0
+    try:
+        s = str(val).strip().replace("$", "").replace(",", "")
+        return float(s)
+    except Exception:
+        return 0.0
+
+def _short(s: str, n: int = 400) -> str:
+    if s is None:
+        return ""
+    s = str(s)
+    return s if len(s) <= n else s[:n] + " ...[truncated]"
+
+def get_first_value(d: Dict[str, Any], candidates: List[str], default: Any = "") -> Any:
+    if not d:
+        return default
+    for k in candidates:
+        if k in d and d[k] not in (None, ""):
+            return d[k]
+    lowered = {str(k).lower(): v for k, v in d.items() if v not in (None, "")}
+    for k in candidates:
+        if k.lower() in lowered:
+            return lowered[k.lower()]
+    return default
+
+def map_sheet_row_to_user_details(row: Dict[str, Any]) -> Dict[str, Any]:
+    """Map exact columns to the frontend-friendly object used by HotelSidebar."""
+    if not row:
+        return {}
+    # Keep exact keys as in sheet when useful
+    uid = row.get("Client Id", "") or row.get("ClientId", "") or row.get("client_id", "")
+    booking_status = row.get("Workfow Stage", "") or row.get("Workflow Stage", "") or row.get("Booking Status", "") or "Not Booked"
+    # id proof may be a status or a link
+    id_proof = row.get("Id Link", "") or row.get("IdLink", "") or row.get("ID Proof", "") or ""
+    pending_balance = _parse_float(row.get("Pending Balance", 0) or row.get("Balance", 0) or 0)
+    status = row.get("Status", "") or booking_status or "Still"
+    room_number = row.get("Room Alloted", "") or row.get("Room Number", "") or ""
+    check_in = row.get("CheckIn", "") or row.get("Check In", "")
+    check_out = row.get("Check Out", "") or row.get("CheckOut", "")
+
+    return {
+        "uid": uid,
+        "bookingStatus": booking_status,
+        "bookingId": row.get("Booking Id", "") or row.get("BookingId", "") or "",
+        "idProof": id_proof,
+        "pendingBalance": pending_balance,
+        "status": status,
+        "roomNumber": room_number,
+        "checkIn": check_in,
+        "checkOut": check_out,
+        "_raw_row": {k: (v if _normalize_key(k) != "password" else "****") for k, v in (row or {}).items()}
+    }
+
+def normalize_raw_user_data(raw_user_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Normalized snake_case mapping (useful for other endpoints)."""
+    return {
+        "client_id": raw_user_data.get("Client Id", "") or raw_user_data.get("ClientId", ""),
+        "name": raw_user_data.get("Name", "") or raw_user_data.get("Full Name", ""),
+        "email": raw_user_data.get("Email", ""),
+        "booking_id": raw_user_data.get("Booking Id", ""),
+        "workflow_stage": raw_user_data.get("Workfow Stage", "") or raw_user_data.get("Workflow Stage", ""),
+        "room_alloted": raw_user_data.get("Room Alloted", ""),
+        "check_in": raw_user_data.get("CheckIn", "") or raw_user_data.get("Check In", ""),
+        "check_out": raw_user_data.get("Check Out", "") or raw_user_data.get("CheckOut", ""),
+        "id_link": raw_user_data.get("Id Link", ""),
+        "pending_balance": _parse_float(raw_user_data.get("Pending Balance", 0)),
+        "status": raw_user_data.get("Status", "") or raw_user_data.get("Workfow Stage", "")
+    }
+
+def _update_session_from_raw(username: str, raw_user_data: Dict[str, Any], remember_token: Optional[str] = None):
+    normalized = normalize_raw_user_data(raw_user_data)
+    frontend_view = map_sheet_row_to_user_details(raw_user_data)
+    USER_SESSIONS[username] = {
+        "normalized": normalized,
+        "raw": raw_user_data,
+        "frontend": frontend_view,
+        "last_login": datetime.utcnow().isoformat() + "Z",
+        "remember_token": remember_token or USER_SESSIONS.get(username, {}).get("remember_token"),
+    }
+    logger.debug("Session for %s updated/saved (sanitized): %s", username, json.dumps({
+        "normalized": normalized,
+        "frontend": frontend_view,
+        "last_login": USER_SESSIONS[username]["last_login"],
+        "remember_token": USER_SESSIONS[username]["remember_token"]
+    }, default=str))
+
+###########################################################################
+# ------------------------- Sheets helpers (with debug) -------------------------
+def push_row_to_sheet(sheet_name: str, row_data: Dict[str, Any]) -> Dict[str, Any]:
+    if not Config.GSHEET_WEBAPP_URL:
+        raise RuntimeError("GSHEET_WEBAPP_URL not configured in Config")
+
+    safe_preview = {k: (v if _normalize_key(k) != "password" else "****") for k, v in row_data.items() if k in ("Client Id", "Email", "Name", "Password")}
+    logger.debug("push_row_to_sheet: payload preview: %s", safe_preview)
+    payload = {"action": "addRow", "sheet": sheet_name, "rowData": row_data}
+    try:
+        resp = requests.post(Config.GSHEET_WEBAPP_URL, json=payload, timeout=15, allow_redirects=True)
+        logger.debug("push_row_to_sheet: response url=%s status=%s", getattr(resp, "url", None), resp.status_code)
+        text = _short(resp.text, 1000)
+        logger.debug("push_row_to_sheet: response text (truncated) = %s", text)
+        resp.raise_for_status()
+        try:
+            return resp.json()
+        except ValueError:
+            return {"success": resp.ok, "status_code": resp.status_code, "text": text}
+    except Exception as e:
+        logger.exception("push_row_to_sheet: exception while calling sheet")
+        return {"success": False, "message": str(e)}
+
+def fetch_client_row_from_sheet_by_email(email: str) -> Optional[Dict[str, Any]]:
+    if not Config.GSHEET_WEBAPP_URL:
+        logger.error("GSHEET_WEBAPP_URL not configured")
+        return None
+
+    try:
+        params = {"action": "getSheetData", "sheet": CLIENT_WORKFLOW_SHEET}
+        logger.debug("fetch_client_row_from_sheet_by_email: calling GET %s params=%s", Config.GSHEET_WEBAPP_URL, params)
+        resp = requests.get(Config.GSHEET_WEBAPP_URL, params=params, timeout=15, allow_redirects=True)
+        logger.debug("fetch_client_row_from_sheet_by_email: response status=%s url=%s", resp.status_code, getattr(resp, "url", None))
+        try:
+            rows = resp.json()
+        except ValueError:
+            logger.error("fetch_client_row_from_sheet_by_email: getSheetData returned non-JSON: %s", _short(resp.text, 800))
+            return None
+
+        if not isinstance(rows, list):
+            logger.error("fetch_client_row_from_sheet_by_email: unexpected sheet response type=%s", type(rows))
+            return None
+
+        target = (email or "").strip().lower()
+        for idx, row in enumerate(rows):
+            for key, val in (row or {}).items():
+                if _normalize_key(key) in ("email", "username"):
+                    if str(val or "").strip().lower() == target:
+                        logger.debug("fetch_client_row_from_sheet_by_email: found matching row index=%s, row=%s", idx, {k: (v if _normalize_key(k) != "password" else "****") for k, v in row.items()})
+                        return row
+        logger.debug("fetch_client_row_from_sheet_by_email: no match for %s", target)
+        return None
+    except Exception as e:
+        logger.exception("Error fetching sheet for email lookup")
+        return None
+
+###########################################################################
+# ------------------------- Endpoints (login/signup/update + debug) -------------------------
+
+@app.post("/auth/login", tags=["authentication"])
+async def login(req: LoginReq = Body(...)):
+    logger.info("Login attempt for username=%s (remember=%s)", req.username, req.remember)
+    payload = {
+        "action": "verifyUser",
+        "sheet": CLIENT_WORKFLOW_SHEET,
+        "username": req.username,
+        "password": req.password,
+    }
+    logger.debug("Login payload (not showing password): %s", {"action": payload["action"], "sheet": payload["sheet"], "username": payload["username"]})
+
+    try:
+        # follow redirects to handle Apps Script 302 -> googleusercontent
+        async with httpx.AsyncClient(timeout=15.0, follow_redirects=True) as client:
+            resp = await client.post(Config.GSHEET_WEBAPP_URL, json=payload)
+            logger.debug("httpx POST to GSHEET_WEBAPP_URL returned status=%s final_url=%s", resp.status_code, resp.url)
+            resp_text = _short(resp.text, 1000)
+            logger.debug("httpx response text (truncated) = %s", resp_text)
+
+            try:
+                data = resp.json()
+            except ValueError:
+                logger.error("Login: upstream returned non-JSON. resp_text=%s", resp_text)
+                # fallback: attempt a full-sheet search
+                data = {}
+
+        logger.debug("Login: parsed data keys = %s", list(data.keys()) if isinstance(data, dict) else type(data))
+
+        # If Apps Script returned structured response, use it. Otherwise fallback to full sheet lookup.
+        raw_user_data = data.get("userData") if isinstance(data, dict) else None
+        if not raw_user_data:
+            logger.info("Login: apps-script did not return userData - trying fallback GET sheet by email for %s", req.username)
+            fallback_row = fetch_client_row_from_sheet_by_email(req.username)
+            if fallback_row:
+                raw_user_data = fallback_row
+                logger.debug("Login: fallback found row: %s", {k: (v if _normalize_key(k) != "password" else "****") for k, v in raw_user_data.items()})
+            else:
+                # If the Apps Script returned "found" or "verified" flags, prefer them. Otherwise fail.
+                if isinstance(data, dict) and (data.get("found") or data.get("verified")):
+                    # still allow empty userData if found/verified flags are set (rare)
+                    raw_user_data = data.get("userData", {}) or {}
+                else:
+                    logger.warning("Login: no userData and fallback not found - denying login for %s", req.username)
+                    raise HTTPException(status_code=401, detail="Invalid credentials or user not found")
+
+        # If Apps Script returned an error, stop
+        if isinstance(data, dict) and "error" in data:
+            logger.warning("Login: apps-script error=%s", data.get("error"))
+            raise HTTPException(status_code=401, detail=data["error"])
+
+        # Map exactly according to your sheet columns and create a frontend-ready view
+        frontend_view = map_sheet_row_to_user_details(raw_user_data)
+        normalized = normalize_raw_user_data(raw_user_data)
+        token = uuid.uuid4().hex if req.remember else None
+
+        # persist into session store
+        _update_session_from_raw(req.username, raw_user_data, remember_token=token)
+
+        logger.info("Login success for %s; frontend_view.bookingStatus=%s roomNumber=%s", req.username, frontend_view.get("bookingStatus"), frontend_view.get("roomNumber"))
+        logger.debug("Login final frontend_view (sanitized): %s", json.dumps(frontend_view, default=str))
+        logger.debug("Login normalized (sanitized): %s", json.dumps(normalized, default=str))
+
+        return {
+            "username": req.username,
+            "remember_token": token,
+            "userData": {
+                "raw": USER_SESSIONS[req.username]["raw"],
+                "normalized": USER_SESSIONS[req.username]["normalized"],
+                "frontend": USER_SESSIONS[req.username]["frontend"],
+            }
+        }
+
+    except HTTPException:
+        raise
+    except httpx.HTTPStatusError as e:
+        logger.error("Upstream HTTPStatusError: %s", str(e))
+        raise HTTPException(status_code=502, detail="Upstream service error")
+    except Exception as e:
+        logger.exception("Login: unexpected exception")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/auth/signup", tags=["authentication"])
+async def signup(req: SignupReq = Body(...)):
+    logger.info("Signup attempt username=%s", req.username)
+    client_id = f"ILR-{datetime.utcnow().year}-{random.randint(1000,9999)}"
+    workflow_stage = "Not Booked"
+    row_data = {
+        "Client Id": client_id,
+        "Name": req.name,
+        "Email": req.username,
+        "Password": req.password,
+        "Booking Id": "",
+        "Workfow Stage": workflow_stage,
+        "Room Alloted": "",
+        "CheckIn": "",
+        "Check Out": "",
+        "Id Link": "",
+    }
+    resp = push_row_to_sheet(CLIENT_WORKFLOW_SHEET, row_data)
+    logger.debug("signup: push_row_to_sheet returned: %s", resp)
+    if resp.get("success") or resp.get("ok") or resp.get("status_code") == 200:
+        return {"success": True, "workflowStage": workflow_stage, "clientId": client_id, "message": "Registration successful"}
+    else:
+        error_msg = resp.get("message", resp.get("error", "Unknown error"))
+        logger.error("signup failed: %s", error_msg)
+        raise HTTPException(status_code=400, detail=error_msg)
+
+
+@app.post("/auth/update-workflow", tags=["authentication"])
+async def update_workflow(req: UpdateWorkflowReq = Body(...)):
+    logger.info("update_workflow: username=%s -> stage=%s", req.username, req.stage)
+    update_data = {
+        "action": "updateUserWorkflow",
+        "sheet": CLIENT_WORKFLOW_SHEET,
+        "email": req.username,
+        "updates": {
+            "Workflow Stage": req.stage
+        }
+    }
+    if req.booking_id:
+        update_data["updates"]["Booking Id"] = req.booking_id
+    if req.id_proof_link:
+        update_data["updates"]["Id Link"] = req.id_proof_link
+
+    logger.debug("update_workflow: payload=%s", update_data)
+    try:
+        resp = requests.post(Config.GSHEET_WEBAPP_URL, json=update_data, timeout=15, allow_redirects=True)
+        logger.debug("update_workflow: response status=%s url=%s", resp.status_code, getattr(resp, "url", None))
+        try:
+            data = resp.json()
+        except ValueError:
+            logger.error("update_workflow: non-JSON response: %s", _short(resp.text))
+            raise HTTPException(status_code=502, detail="Invalid response from upstream service")
+
+        logger.debug("update_workflow: parsed response: %s", data)
+        if "error" in data:
+            raise HTTPException(status_code=400, detail=data["error"])
+
+        returned_user_data = data.get("userData")
+        if returned_user_data:
+            logger.info("update_workflow: apps-script returned userData - updating session for %s", req.username)
+            _update_session_from_raw(req.username, returned_user_data)
+
+        return {"success": True, "message": f"Workflow stage updated to {req.stage}", "userData": returned_user_data}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.exception("update_workflow: unexpected")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/auth/session/{username}", tags=["authentication"])
+def get_session(username: str):
+    logger.debug("get_session called for %s", username)
+    session = USER_SESSIONS.get(username)
+    if not session:
+        raise HTTPException(status_code=404, detail="Session not found")
+    # return a sanitized session for frontend
+    return {"username": username, "session": {"normalized": session["normalized"], "frontend": session["frontend"], "last_login": session["last_login"]}}
+
+
+@app.post("/auth/logout", tags=["authentication"])
+def logout(username: str = Body(..., embed=True)):
+    logger.info("logout called for %s", username)
+    if username in USER_SESSIONS:
+        del USER_SESSIONS[username]
+        return {"ok": True}
+    raise HTTPException(status_code=404, detail="Session not found")
+
+
+@app.post("/auth/me", tags=["authentication"])
+def me_post(body: MeReq = Body(...)):
+    logger.debug("me_post called with body=%s", body.dict())
+    if body.remember_token:
+        for uname, sess in USER_SESSIONS.items():
+            if sess.get("remember_token") == body.remember_token:
+                logger.debug("me_post: found session by token for %s", uname)
+                return {"username": uname, "session": sess}
+        raise HTTPException(status_code=404, detail="Session not found for provided token")
+    if body.username:
+        sess = USER_SESSIONS.get(body.username)
+        if not sess:
+            raise HTTPException(status_code=404, detail="Session not found")
+        return {"username": body.username, "session": sess}
+    raise HTTPException(status_code=400, detail="Provide either username or remember_token")
+
+@app.get("/auth/me", tags=["authentication"])
+def get_current_user(request: Any):
+    session_token = request.cookies.get("session_token")
+    if not session_token:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
+    print()
+    print(USER_SESSIONS)
+    print()
+
+    # Find the user from sessions
+    for username, sess in USER_SESSIONS.items():
+        if sess.get("session_token") == session_token:
+            return {
+                "username": username,
+                "frontend": sess.get("frontend", {}),
+                "normalized": sess.get("normalized", {}),
+                "last_login": sess.get("last_login"),
+            }
+
+    raise HTTPException(status_code=404, detail="User not found")
+
+
+# ------------------------- New endpoint: return all sessions (sanitized) -------------------------
+@app.get("/auth/sessions", tags=["authentication"])
+def get_all_sessions():
+    """
+    Return all active user sessions in-memory.
+    Raw rows are returned but any 'password' key is masked.
+    Useful for frontend admin display or session debugging.
+    """
+    print()
+    print(USER_SESSIONS)
+    print()
+
+    logger.debug("get_all_sessions called - returning %d sessions", len(USER_SESSIONS))
+    safe_sessions: Dict[str, Dict[str, Any]] = {}
+    for username, s in USER_SESSIONS.items():
+        raw_s = s.get("raw", {}) or {}
+        # mask any password-like keys
+        raw_s_sanitized = {k: ("****" if _normalize_key(k) == "password" else v) for k, v in raw_s.items()}
+        safe_sessions[username] = {
+            "raw": raw_s_sanitized,
+            "normalized": s.get("normalized", {}),
+            "frontend": s.get("frontend", {}),
+            "last_login": s.get("last_login"),
+            "remember_token": s.get("remember_token"),
+        }
+    return {"sessions": safe_sessions}
+
+
+###########################################################################
+
+logger.info("Initial USER_SESSIONS snapshot (sanitized): %s", {k: {"last_login": v.get("last_login"), "client_id": v.get("normalized", {}).get("client_id")} for k, v in USER_SESSIONS.items()})
+
+################### Now Lets Move to the main part (responses) #####################
+
+
+DEMO_ROOM_TYPES = ["Luxury Tent"]
 sample_bookings: List[Dict[str, Any]] = []
 
-
-# --- add these imports near the top of your file (if not already present) ---
-import requests
-import random
-from datetime import datetime
-from typing import Dict
-
-# Config is already in your project; ensure it's imported:
-# from config import Config
-
-# Optional: allow overriding ticket sheet tab name via Config
 TICKET_SHEET_NAME = getattr(Config, "GSHEET_TICKET_SHEET", "ticket_management")
 GSHEET_WEBAPP_URL = getattr(Config, "GSHEET_WEBAPP_URL", "https://script.google.com/macros/s/AKfycbwfh2HvU5E0Y0Ruv5Ylfwdh524c0PWLCU0NduferN4etm08ovIMO6WoFoJVszmQx__O/exec")
 GUEST_LOG_SHEET_NAME = getattr(Config, "GSHEET_GUEST_LOG_SHEET", "guest_interaction_log")
+MENU_SHEET_NAME = getattr(Config, "GSHEET_MENU_SHEET", "menu_manager")
+menu_rows: List[Dict[str, Any]] = []
 
 # ------------- Generic helper to push a row to any sheet via your Apps Script Web App -------------
 def push_row_to_sheet(sheet_name: str, row_data: Dict[str, Any]) -> Dict[str, Any]:
@@ -239,7 +523,7 @@ def push_row_to_sheet(sheet_name: str, row_data: Dict[str, Any]) -> Dict[str, An
         return resp.json()
     except Exception:
         return {"status_code": resp.status_code, "text": resp.text}
-    
+
 # ------------- Guest interaction logging helper -------------
 def _naive_sentiment(message: str) -> str:
     """Very small sentiment heuristic (optional). Returns 'positive' / 'negative' / ''."""
@@ -290,7 +574,6 @@ def create_guest_log_row(req_session_id: Optional[str], email: Optional[str], us
         "Conversation URL": conversation_url,
     }
 
-# --- Local ticket-detection heuristic ---
 def is_ticket_request(message: str, intent: str, addon_matches: list = None) -> bool:
     """
     Return True when message likely requests a service/add-on that should create a ticket.
@@ -309,6 +592,8 @@ def is_ticket_request(message: str, intent: str, addon_matches: list = None) -> 
         "room_service_request",
         "maintenance_request",
         "order_addon",
+        "wake-up-call",
+        "urgent_assistance",
         # (add other classifier intent names you use)
     }
     if intent in ticket_intents:
@@ -318,7 +603,7 @@ def is_ticket_request(message: str, intent: str, addon_matches: list = None) -> 
     keywords = [
         "coffee", "tea", "order", "bring", "deliver", "room service", "food", "meal", "snack",
         "towel", "clean", "housekeeping", "makeup room", "turn down", "repair", "fix", "ac", "wifi",
-        "tv", "light", "broken", "leak", "toilet", "bathroom", "shower"
+        "tv", "light", "broken", "leak", "toilet", "bathroom", "shower", "wake-up-call","pickup and drop","laundry","taxi","transportation", "request", "need", "help", "assist", "urgent"
     ]
     if any(k in lower for k in keywords):
         return True
@@ -355,31 +640,34 @@ def create_ticket_row_payload(message: str, email: str = None) -> Dict[str, str]
     
     Note: This function now tries to get the actual room number from Client_workflow sheet if possible
     """
-    # Get actual room number from Client_workflow sheet if possible
-    room_no = "Not Assigned"  # Default value
-    if email and GSHEET_WEBAPP_URL:
-        try:
-            # Query the Client_workflow sheet for user's room
-            payload = {
-                "action": "getUserData",
-                "sheet": "Client_workflow",
-                "username": email
-            }
-            resp = requests.post(GSHEET_WEBAPP_URL, json=payload, timeout=10)
-            resp.raise_for_status()
-            data = resp.json()
-            
-            if data.get("found") and data.get("userData"):
-                user_data = data.get("userData", {})
-                room_alloted = user_data.get("Room Alloted")
-                if room_alloted and room_alloted not in ["-", "", "None", "not assigned"]:
-                    room_no = room_alloted
 
-        except Exception as e:
-            logger.warning(f"Failed to get room number for {email}: {e}")
+    # get the latest session (key + object)
+    session_key, session_obj = get_latest_session(USER_SESSIONS)
+    # Get actual room number from Client_workflow sheet if possible
+
+    print("\nSelected session_key:", session_key)
+    print("Selected session_obj (sanitized):")
+    if session_obj:
+        # mask password in raw if present for logging
+        raw_preview = {k: ("****" if re.sub(r"[^a-zA-Z0-9]", "", str(k)).lower() == "password" else v)
+                       for k, v in (session_obj.get("raw", {}) or {}).items()}
+        print("normalized:", session_obj.get("normalized"))
+        print("frontend:", session_obj.get("frontend"))
+        print("raw (masked):", raw_preview)
+    else:
+        print("No session selected (session_obj is None)")
+    print()
+
+
+
+    normalized = session_obj.get("normalized") if session_obj else {}
+
+    guest_email = normalized.get("email") if isinstance(normalized, dict) else None
+    room_no = normalized.get("room_alloted") if isinstance(normalized, dict) else None
+
     
     ticket_id = f"TCK-{random.randint(1000, 99999)}"
-    guest_name = email or "Guest"
+    guest_name = guest_email 
     category = classify_ticket_category(message)
     assigned_to = assign_staff_for_category(category)
     status = "In Progress"
@@ -391,7 +679,7 @@ def create_ticket_row_payload(message: str, email: str = None) -> Dict[str, str]
     # Return the ticket data with the room number
     return {
         "Ticket ID": ticket_id,
-        "Guest Name": guest_name,
+        "Guest Name": guest_email,
         "Room No": room_no,  # Now using actual room number from Client_workflow sheet
         "Request/Query": message,
         "Category": category,
@@ -427,95 +715,22 @@ def push_ticket_to_sheet(row_data: Dict[str, str]) -> Dict:
         # bubble up error to caller for graceful logging
         raise
 
-# ------------------------- Helpers -------------------------
-def get_db() -> Generator[Session, None, None]:
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+import os
+import uuid
+import json
+import random
+import logging
+import asyncio
+import requests
+from typing import List, Optional, Dict, Any, Generator
+from datetime import date, datetime, timedelta
 
-def menu_file_path() -> str:
-    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "services", "menu.json")
-
-# ------------------------- Startup -------------------------
-@app.on_event("startup")
-def on_startup():
-    try:
-        Base.metadata.create_all(bind=engine)
-    except Exception as e:
-        logger.warning("Failed to create DB tables: %s", e)
-
-    try:
-        USER_DB_PATH = "illora_user_gate.db"
-        web.init_user_db(USER_DB_PATH)
-    except Exception as e:
-        logger.warning("Failed to init user DB: %s", e)
-
-    db = SessionLocal()
-    try:
-        room_count = db.query(func.count(Room.id)).scalar() if db else 0
-        if not room_count:
-            logger.info("Seeding default rooms...")
-            demo_rooms = [
-                Room(name="Deluxe King", room_type="deluxe", capacity=2, base_price=5000, total_units=5, media=[]),
-                Room(name="Standard Twin", room_type="standard", capacity=2, base_price=3000, total_units=8, media=[]),
-                Room(name="Suite Ocean", room_type="suite", capacity=4, base_price=12000, total_units=2, media=[]),
-            ]
-            db.add_all(demo_rooms)
-            db.commit()
-
-        booking_count = db.query(func.count(Booking.id)).scalar()
-        if not booking_count:
-            first_room = db.query(Room).first()
-            demo_booking = Booking(
-                guest_name="Demo Guest",
-                guest_phone="0000000000",
-                room_id=getattr(first_room, "id", None),
-                check_in=date.today(),
-                check_out=(date.today() + timedelta(days=1)),
-                price=getattr(first_room, "base_price", 0),
-                channel="seed",
-                channel_user="demo@example.com",
-            )
-            db.add(demo_booking)
-            db.commit()
-
-        chat_exists = db.query(func.count(ChatMessage.session_id)).scalar() if hasattr(ChatMessage, "session_id") else 0
-        if not chat_exists:
-            cm_user = ChatMessage(
-                session_id="seed-session", email="demo@example.com", channel="web",
-                role="user", text="Hi, is breakfast included?", intent="ask_breakfast", is_guest=True
-            )
-            cm_bot = ChatMessage(
-                session_id="seed-session", email="demo@example.com", channel="web",
-                role="assistant", text="Breakfast is included for bookings with breakfast plan.",
-                intent="reply", is_guest=True
-            )
-            db.add_all([cm_user, cm_bot])
-            db.commit()
-    except Exception as e:
-        logger.warning("Startup seeding error: %s", e)
-        db.rollback()
-    finally:
-        db.close()
-
-    global sample_bookings
-    sample_bookings = []
-    base_date = datetime.today()
-    for i, name in enumerate(DEMO_NAMES, start=1):
-        check_in = base_date + timedelta(days=random.randint(0, 10))
-        check_out = check_in + timedelta(days=random.randint(1, 5))
-        sample_bookings.append({
-            "id": i,
-            "guest": name,
-            "room_no": random.randint(1, 100),
-            "room": random.choice(DEMO_ROOM_TYPES),
-            "check_in": check_in.strftime("%Y-%m-%d"),
-            "check_out": check_out.strftime("%Y-%m-%d"),
-            "status": random.choice(["Confirmed", "Checked-in", "Checked-out", "Cancelled"]),
-            "amount": random.randint(5000, 20000)
-        })
+from fastapi import FastAPI, Depends, UploadFile, File, HTTPException, Query, Request, Body
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel, Field
+from config import Config
 
 # ------------------------- SSE Broker -------------------------
 class EventBroker:
@@ -564,12 +779,9 @@ async def sse_events(request: Request):
     headers = {"Cache-Control": "no-cache", "X-Accel-Buffering": "no"}
     return StreamingResponse(event_generator(q), headers=headers, media_type="text/event-stream")
 
-# ------------------------- Pydantic Models -------------------------
-class LoginReq(BaseModel):
-    email: str
-    password: str
-    remember: bool = True
 
+
+# ------------------------- Pydantic Models -------------------------
 class ChatReq(BaseModel):
     message: str
     is_guest: Optional[bool] = False
@@ -588,344 +800,171 @@ class ChatResp(BaseModel):
     intent: Optional[str] = None
     actions: ChatActions = Field(default_factory=ChatActions)
 
-class BookingStageReq(BaseModel):
-    room_id: int
-    check_in: date
-    check_out: date
-    guest_name: str
-    guest_phone: Optional[str] = None
 
-class BookingConfirmReq(BaseModel):
-    booking_id: str
-    room_type: str
-    nights: int
-    cash: bool = False
-    extras: List[str] = Field(default_factory=list)
+########## helper functions ##########
 
-class BookingForm(BaseModel):
-    check_in: date
-    check_out: date
-    guests: int
-    preferences: Optional[str] = ""
-    whatsapp_number: Optional[str] = ""
-
-class DemoBookingUpdate(BaseModel):
-    guest: Optional[str] = None
-    room: Optional[str] = None
-    check_in: Optional[str] = None
-    check_out: Optional[str] = None
-    status: Optional[str] = None
-    amount: Optional[int] = None
-
-class DBBookingUpdate(BaseModel):
-    guest_name: Optional[str] = None
-    guest_phone: Optional[str] = None
-    room_id: Optional[int] = None
-    check_in: Optional[date] = None
-    check_out: Optional[date] = None
-    price: Optional[float] = None
-    status: Optional[str] = None  # e.g., "CONFIRMED", "CHECKED_IN", etc.
-
-# ------------------------- Demo endpoints -------------------------
-@app.get("/demo/bookings/all")
-def demo_get_all_bookings():
-    return {"bookings": sample_bookings}
-
-@app.get("/demo/bookings/{booking_id}")
-def demo_get_booking(booking_id: int):
-    for b in sample_bookings:
-        if b["id"] == booking_id:
-            return b
-    raise HTTPException(status_code=404, detail="Demo booking not found")
-
-@app.patch("/demo/bookings/{booking_id}")
-def demo_update_booking(booking_id: int, patch: DemoBookingUpdate):
-    for b in sample_bookings:
-        if b["id"] == booking_id:
-            for field, value in patch.dict(exclude_unset=True).items():
-                b[field] = value
-            return {"ok": True, "booking": b}
-    raise HTTPException(status_code=404, detail="Demo booking not found")
-
-@app.post("/admin/seed")
-def admin_seed_demo(count: int = Query(20, ge=1, le=100)):
-    global sample_bookings
-    sample_bookings = []
-    base_date = datetime.today()
-    for i in range(count):
-        name = random.choice(DEMO_NAMES)
-        check_in = base_date + timedelta(days=random.randint(0, 10))
-        check_out = check_in + timedelta(days=random.randint(1, 5))
-        sample_bookings.append({
-            "id": i + 1,
-            "guest": name,
-            "room": random.choice(DEMO_ROOM_TYPES),
-            "check_in": check_in.strftime("%Y-%m-%d"),
-            "check_out": check_out.strftime("%Y-%m-%d"),
-            "status": random.choice(["Confirmed", "Checked-in", "Checked-out", "Cancelled"]),
-            "amount": random.randint(5000, 20000)
-        })
-    return {"ok": True, "seeded": len(sample_bookings)}
-
-
-
-
-# ---------------- Auth Models -------------------------
-class SignupReq(BaseModel):
-    name: str = Field(..., min_length=2, description="User's full name")
-    username: str = Field(..., min_length=3, description="User's email address")
-    password: str = Field(..., min_length=6, description="User's password")
-    phoneNo: str = Field(default="", description="User's phone number")
-    
-class LoginReq(BaseModel):
-    username: str = Field(..., description="User's username/email")
-    password: str = Field(..., description="User's password")
-    remember: bool = Field(default=True, description="Remember me flag")
-
-class UpdateWorkflowReq(BaseModel):
-    username: str = Field(..., description="User's username/email")
-    stage: str = Field(..., description="New workflow stage")
-    booking_id: Optional[str] = Field(None, description="Booking ID if available")
-    id_proof_link: Optional[str] = Field(None, description="ID proof link if available")
-
-# ---------------- Auth endpoints ----------------
-@app.post("/auth/signup", tags=["authentication"])
-async def signup(req: SignupReq = Body(...)):
+def _fetch_sheet_data(self, sheet_name: str) -> List[Dict[str, Any]]:
     """
-    Register a new user and add them to the Client_workflow sheet
+    Calls the deployed Apps Script web app and returns the list of row objects for the sheet.
+    The web app must implement ?action=getSheetData&sheet=<sheetName> (matching your provided Apps Script).
     """
-    logger.info(f"Received signup request for username: {req.username}")
-    
-    try:
-        # Generate unique Client Id (e.g., ILR-YYYY-XXXX)
-        client_id = f"ILR-{datetime.utcnow().year}-{random.randint(1000,9999)}"
-        workflow_stage = "Registered"
-        
-        # Prepare row data for Client_workflow sheet
-        row_data = {
-            "Client Id": client_id,
-            "Name": req.name,
-            "Email": req.username,  # Map username to Email column
-            "Password": req.password,
-            "Booking Id": "",
-            "Workflow Stage": workflow_stage,  # Fixed typo in key name
-            "Room Alloted": "",
-            "CheckIn": "",
-            "Check Out": "",
-            "Id Link": "",
-        }
-        
-        # Add user to Google Sheet
-        resp = push_row_to_sheet("Client_workflow", row_data)
-        
-        if resp.get("success") or resp.get("ok") or resp.get("status_code") == 200:
-            logger.info(f"User {req.username} registered successfully with client ID {client_id}")
-            return {
-                "success": True,
-                "workflowStage": workflow_stage,
-                "clientId": client_id,
-                "message": "Registration successful"
-            }
-        else:
-            error_msg = resp.get("message", "Unknown error during registration")
-            logger.error(f"Failed to register user {req.username}: {error_msg}")
-            raise HTTPException(status_code=400, detail=error_msg)
-            
-    except Exception as e:
-        logger.error(f"Error in signup endpoint: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+    if not self.sheet_api:
+        raise RuntimeError("GSHEET_WEBAPP_URL is not configured in Config.")
 
-@app.post("/auth/login", tags=["authentication"])
-async def login(req: LoginReq):
-    """Verify user credentials against the Google Sheet"""
-    logger.info(f"Login attempt for username: {req.username}")
-    
+    params = {"action": "getSheetData", "sheet": sheet_name}
     try:
-        # Prepare payload for Google Sheet verification
-        payload = {
-            "action": "verifyUser",
-            "sheet": "Client_workflow",
-            "username": req.username,  # Will be treated as email in Apps Script
-            "password": req.password
-        }
-        
-        logger.info("Sending verification request to Google Sheet")
-        resp = requests.post(Config.GSHEET_WEBAPP_URL, json=payload, timeout=10)
+        resp = requests.get(self.sheet_api, params=params, timeout=15)
         resp.raise_for_status()
-        
         data = resp.json()
-        logger.info(f"Received response from Google Sheet: {data}")
-        
-        if "error" in data:
-            logger.error(f"Error from Google Sheet: {data['error']}")
-            raise HTTPException(status_code=401, detail=data["error"])
-            
-        found = data.get("found", False)
-        verified = data.get("verified", False)
-        user_data = data.get("userData")
-        message = data.get("message", "Unknown error")
-        
-        if not found:
-            logger.warning(f"User {req.username} not found")
-            raise HTTPException(
-                status_code=403,
-                detail={
-                    "message": "User not registered. Please sign up first.",
-                    "needsSignup": True
-                }
-            )
-        
-        if not verified:
-            logger.warning(f"Invalid password for user {req.username}")
-            raise HTTPException(
-                status_code=401,
-                detail={
-                    "message": message or "Invalid credentials"
-                }
-            )
-        
-        # Generate remember token if requested
-        token = uuid.uuid4().hex if req.remember else None
-        
-        logger.info(f"User {req.username} logged in successfully")
-        return {
-            "username": req.username,
-            "remember_token": token,
-            "userData": user_data
-        }
-            
-    except HTTPException:
-        raise
+        # Data should be a list of objects (one per row). If the webapp returns {error:...}, raise.
+        if isinstance(data, dict) and data.get("error"):
+            raise RuntimeError(f"Sheets webapp returned error: {data.get('error')}")
+        if not isinstance(data, list):
+            # sometimes the webapp might wrap results; be permissive
+            raise RuntimeError("Unexpected sheet response format (expected list of row objects).")
+        return data
     except Exception as e:
-        logger.error(f"Login error: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-# Model for session restoration
-class RestoreSessionReq(BaseModel):
-    username: str = Field(..., description="User's username/email")
-
-@app.post("/auth/me", tags=["authentication"])
-async def restore_session(req: RestoreSessionReq):
-    """Fetch user data from Google Sheet for session restoration"""
-    logger.info(f"Restoring session for username: {req.username}")
-    
-    try:
-        # Prepare payload for Google Sheet
-        payload = {
-            "action": "getUserData",
-            "sheet": "Client_workflow",
-            "username": req.username,
-        }
-        
-        logger.info("Sending user data request to Google Sheet")
-        resp = requests.post(Config.GSHEET_WEBAPP_URL, json=payload, timeout=10)
-        resp.raise_for_status()
-        
-        data = resp.json()
-        logger.info(f"Received response from Google Sheet: {data}")
-        
-        if "error" in data:
-            logger.error(f"Error from Google Sheet: {data['error']}")
-            raise HTTPException(status_code=401, detail=data["error"])
-            
-        found = data.get("found", False)
-        user_data = data.get("userData")
-        
-        if not found or not user_data:
-            logger.warning(f"User {req.username} not found")
-            raise HTTPException(status_code=404, detail="User not found")
-        
-        logger.info(f"Successfully restored session for {req.username}")
-        return {
-            "username": req.username,
-            "userData": user_data
-        }
-            
-    except HTTPException:
+        logger.error(f"Error fetching sheet '{sheet_name}' from {self.sheet_api}: {e}")
         raise
-    except Exception as e:
-        logger.error(f"Error restoring session: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
 
-@app.post("/auth/update-workflow", tags=["authentication"])
-async def update_workflow(req: UpdateWorkflowReq):
-    """Update a user's workflow stage in the Client_workflow sheet"""
-    logger.info(f"Updating workflow stage for user {req.username} to {req.stage}")
-    
-    try:
-        # Prepare payload for Google Sheet update
-        update_data = {
-            "action": "updateUserWorkflow",
-            "sheet": "Client_workflow",
-            "email": req.username,
-            "updates": {
-                "Workflow Stage": req.stage
-            }
-        }
-        
-        # Add optional fields if provided
-        if req.booking_id:
-            update_data["updates"]["Booking Id"] = req.booking_id
-        if req.id_proof_link:
-            update_data["updates"]["Id Link"] = req.id_proof_link
-            
-        logger.info("Sending update request to Google Sheet")
-        resp = requests.post(Config.GSHEET_WEBAPP_URL, json=update_data, timeout=10)
-        resp.raise_for_status()
-        
-        data = resp.json()
-        logger.info(f"Received response from Google Sheet: {data}")
-        
-        if "error" in data:
-            logger.error(f"Error from Google Sheet: {data['error']}")
-            raise HTTPException(status_code=400, detail=data["error"])
-            
-        logger.info(f"Successfully updated workflow stage for user {req.username}")
-        return {
-            "success": True,
-            "message": f"Workflow stage updated to {req.stage}",
-            "userData": data.get("userData")
-        }
-            
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Error updating workflow: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-# ---------------- Chat endpoint ----------------
+'''
 # -------------------- Updated /chat endpoint (drop-in replacement) --------------------
+menu = _fetch_sheet_data(MENU_SHEET_NAME) or []
+menu_text = ""
+if menu:
+    menu_text = "\n\n\n📣 **Menu / Item / Price / Description:**\n"
+    for c in menu[:]:
+        # try to pick a title/description
+        type = c.get("Type") or c.get("Type") or c.get("Type") or c.get("Type") or ""
+        item = c.get("Item") or c.get("Item") or c.get("Item") or ""
+        price = c.get("Price") or "0"
+        desc = c.get("Descripton") or ""
+        if type or desc:
+            menu_text += f"- {type} {('- ' + desc) if desc else ''} {('- ' + item) if item else ''} {('- ' + price) if price else ''} {('- ' + desc) if desc else ''}\n"
+'''
+
+menu = []
+
+from datetime import datetime
+from typing import Tuple, Optional, Dict, Any
+
+# --- Helper: pick latest session by last_login ---
+def get_latest_session(user_sessions: Dict[str, Any]) -> Tuple[Optional[str], Optional[Dict[str, Any]]]:
+    """
+    Return (session_key, session_obj) for the session with the newest last_login.
+    If none found, returns (None, None).
+    """
+    if not user_sessions:
+        return None, None
+
+    latest_key = None
+    latest_ts = None
+
+    for key, sess in user_sessions.items():
+        last_login_str = sess.get("last_login")
+        if last_login_str:
+            try:
+                # handle trailing Z
+                ts = datetime.fromisoformat(last_login_str.replace("Z", "+00:00"))
+            except Exception:
+                ts = None
+        else:
+            ts = None
+
+        # treat missing timestamps as very old so they won't override real ones
+        if ts is None:
+            continue
+
+        if latest_ts is None or ts > latest_ts:
+            latest_ts = ts
+            latest_key = key
+
+    # If we didn't find any with parseable timestamps but there are sessions, pick an arbitrary one
+    if latest_key is None and len(user_sessions) > 0:
+        # pick last inserted key (stable for dicts in Python 3.7+)
+        try:
+            latest_key = next(reversed(user_sessions))
+        except Exception:
+            latest_key = next(iter(user_sessions))
+
+    if latest_key:
+        return latest_key, user_sessions.get(latest_key)
+    return None, None
+
+
+# --- Corrected /chat endpoint ---
 @app.post("/chat", response_model=ChatResp)
 async def chat(req: ChatReq):
+    pending_balance = 0.0
     user_input = req.message or ""
-    is_guest = bool(req.is_guest)
-    # keep original behavior for bot.ask (minimal changes)
-    bot_reply_text = bot.ask(user_input, user_type=is_guest)
+    print(user_input)
+
+    # determine guest flag safely
+    is_guest = bool(getattr(req, "is_guest", False))
+
+    # get the latest session (key + object)
+    session_key, session_obj = get_latest_session(USER_SESSIONS)
+
+    # If you want to prefer req.email over stored sessions when present:
+    # if req.email:
+    #     session_key = req.email
+    #     session_obj = USER_SESSIONS.get(session_key, session_obj)
+
+    # Call bot.ask with session context (session_obj may be None, which is fine)
+
+    # bot.ask signature: ask(query, user_type=None, user_session=None, session_key=None)
+    print('ASKED')
+    bot_reply_text = bot.ask(query= user_input, user_type = "guest" , user_session=session_obj, session_key=session_key)
+
+
     intent = classify_intent(user_input)
     actions = ChatActions()
 
-    # --- menu/extras logic unchanged (but portable path usage) ---
-    MENU_FILE = menu_file_path()
-    try:
-        with open(MENU_FILE, "r", encoding="utf-8") as f:
-            MENU = json.load(f)
-    except FileNotFoundError:
-        MENU = {}
+    # Diagnostic printing (safe)
+    print("\nSelected session_key:", session_key)
+    print("Selected session_obj (sanitized):")
+    if session_obj:
+        # mask password in raw if present for logging
+        raw_preview = {k: ("****" if re.sub(r"[^a-zA-Z0-9]", "", str(k)).lower() == "password" else v)
+                       for k, v in (session_obj.get("raw", {}) or {}).items()}
+        print("normalized:", session_obj.get("normalized"))
+        print("frontend:", session_obj.get("frontend"))
+        print("raw (masked):", raw_preview)
+    else:
+        print("No session selected (session_obj is None)")
+    print()
 
+    normalized = session_obj.get("normalized") if session_obj else {}
+    print()
+    print(normalized)
+    print(type(normalized))
+    print()
+
+    guest_email = normalized.get("email") if isinstance(normalized, dict) else None
+    room_no = normalized.get("room_alloted") if isinstance(normalized, dict) else None
+
+    ## menu:
     AVAILABLE_EXTRAS = {}
     EXTRAS_PRICE_BY_KEY = {}
-    for category, items in MENU.items():
-        if category == "complimentary":
+    for c in menu[:]:
+        if c.get("Type") == "Complimentary":
             continue
-        for display_name, _price in items.items():
-            label = display_name.replace("_", " ").title()
-            key = display_name.lower().replace(" ", "_")
+        label = c.get("Item") or ""
+        key = c.get("Item")
+        try:
+            price = float(c.get("Price") or 0)
+        except Exception:
+            price = 0.0
+        if label:
             AVAILABLE_EXTRAS[label] = key
-            EXTRAS_PRICE_BY_KEY[key] = _price
+        if key:
+            EXTRAS_PRICE_BY_KEY[key] = price
 
     message_lower = user_input.lower()
     addon_matches = [k for k in AVAILABLE_EXTRAS if k.lower() in message_lower]
+
+    for price_addon in addon_matches:
+        pending_balance += EXTRAS_PRICE_BY_KEY.get(AVAILABLE_EXTRAS[price_addon], 0)
 
     # ------------------ Ticket creation (if detected) ------------------
     created_ticket_id: Optional[str] = None
@@ -937,12 +976,11 @@ async def chat(req: ChatReq):
                 created_ticket_id = ticket_row.get("Ticket ID")
                 logger.info("Ticket created: %s (sheet resp: %s)", created_ticket_id, resp_json)
                 # broadcast ticket_created SSE event (best-effort)
-                # Broadcast ticket created event
                 try:
                     await broker.broadcast("ticket_created", {
                         "ticket_id": created_ticket_id,
-                        "guest_email": req.email,
-                        "room_no": ticket_row.get("Room No"),
+                        "guest_email": guest_email,
+                        "room_no": room_no,
                         "category": ticket_row.get("Category"),
                         "assigned_to": ticket_row.get("Assigned To"),
                         "status": ticket_row.get("Status"),
@@ -956,29 +994,6 @@ async def chat(req: ChatReq):
     except Exception as e:
         logger.warning("Ticket subsystem error: %s", e)
 
-    # ------------------ booking form logic (HARD-CODED keyword check) ------------------
-    # Only show booking form when user explicitly asks to book/reserve a room (keyword-based).
-    booking_keywords = ["book a room", "book room", "book", "reserve", "reservation", "room availability"]
-    if any(kw in message_lower for kw in booking_keywords):
-        actions.show_booking_form = True
-    # (We intentionally removed reliance on generic "payment_request" to show forms)
-
-    # ------------------ addon checkout logic (kept as-is) ------------------
-    if intent in ('book_addon_spa', 'book_addon_beverage', 'book_addon_food'):
-        actions.addons = addon_matches
-        try:
-            checkout_url = create_addon_checkout_session(
-                session_id=req.session_id or str(uuid.uuid4()),
-                extras=[AVAILABLE_EXTRAS[k] for k in addon_matches]
-            )
-            actions.payment_link = checkout_url
-        except Exception as e:
-            logger.warning("create_addon_checkout_session failed: %s", e)
-            actions.payment_link = None
-
-    # NOTE: removed the old "if intent == 'checkout_balance':" payment flow replacement was requested.
-    # If you still want pending-balance support via web.get_due_items_details, add a distinct keyword or endpoint.
-
     # file-based log (keep existing)
     log_chat("web", req.session_id or "", user_input, bot_reply_text, intent, is_guest)
 
@@ -989,12 +1004,11 @@ async def chat(req: ChatReq):
             resp_log = push_row_to_sheet(GUEST_LOG_SHEET_NAME, log_row)
             logger.info("Guest interaction logged to sheet (Log ID=%s): %s", log_row.get("Log ID"), resp_log)
             # optionally broadcast a guest_log_created SSE event
-            # Broadcast guest log event
             try:
                 await broker.broadcast("guest_log_created", {
                     "log_id": log_row.get("Log ID"),
                     "session_id": log_row.get("Session ID"),
-                    "guest_email": log_row.get("Guest Email"),
+                    "guest_email": guest_email,
                     "intent": intent,
                     "ticket_ref": created_ticket_id,
                     "timestamp": log_row.get("Timestamp")
@@ -1006,368 +1020,11 @@ async def chat(req: ChatReq):
     except Exception as e:
         logger.warning("Guest log subsystem error: %s", e)
 
-    # ------------------ persist to DB and broadcast (unchanged) ------------------
-    db = SessionLocal()
-    try:
-        cm_user = ChatMessage(
-            session_id=req.session_id,
-            email=req.email,
-            channel="web",
-            role="user",
-            text=user_input,
-            intent=intent,
-            is_guest=is_guest
-        )
-        db.add(cm_user)
-        db.commit(); db.refresh(cm_user)
-
-        cm_bot = ChatMessage(
-            session_id=req.session_id,
-            email=req.email,
-            channel="web",
-            role="assistant",
-            text=bot_reply_text,
-            intent=intent,
-            is_guest=is_guest
-        )
-        db.add(cm_bot)
-        db.commit(); db.refresh(cm_bot)
-
-        # broadcast chat_message
-            # Broadcast chat message
-            try:
-                await broker.broadcast("chat_message", {
-                    "session_id": req.session_id,
-                    "email": req.email,
-                    "user": cm_user.text,
-                    "assistant": cm_bot.text,
-                    "intent": intent
-                })
-            except Exception as e:
-                logger.warning(f"Failed to broadcast chat message: {e}")    except Exception as e:
-        logger.warning("Failed to persist chat message: %s", e)
-        db.rollback()
-    finally:
-        db.close()
-
-    reply_parts = bot_reply_text.split("\n\n")
+    reply_parts = bot_reply_text.split("\n\n") if isinstance(bot_reply_text, str) else [str(bot_reply_text)]
     return ChatResp(reply=bot_reply_text, reply_parts=reply_parts, intent=intent, actions=actions)
 
-# ---------------- Add-ons ----------------
-@app.get("/addons/catalog")
-def addons_catalog():
-    MENU_FILE = menu_file_path()
-    try:
-        with open(MENU_FILE, "r", encoding="utf-8") as f:
-            MENU = json.load(f)
-    except FileNotFoundError:
-        MENU = {}
-
-    AVAILABLE_EXTRAS = {}
-    EXTRAS_PRICE_BY_KEY = {}
-    for category, items in MENU.items():
-        if category == "complimentary":
-            continue
-        for display_name, _price in items.items():
-            label = display_name.replace("_", " ").title()
-            key = display_name.lower().replace(" ", "_")
-            AVAILABLE_EXTRAS[label] = key
-            EXTRAS_PRICE_BY_KEY[key] = _price
-
-    catalog = [{"key": k, "label": k.replace("_", " ").title(), "price": EXTRAS_PRICE_BY_KEY.get(k)} for k in AVAILABLE_EXTRAS.values()]
-    return {"catalog": catalog}
-
-@app.post("/addons/tab")
-def addons_tab(email: str, keys: List[str]):
-    added = web.add_due_items(email, keys)
-    total = web.due_total_from_items(web.get_due_items(email))
-    return {"added": bool(added), "pending_total": total}
-
-@app.post("/addons/checkout")
-def addons_checkout(session_id: str, extras: List[str]):
-    url = create_addon_checkout_session(session_id=session_id, extras=extras)
-    return {"checkout_url": url}
-
-
-# ---------------- Rooms / pricing ----------------
-@app.get("/rooms")
-def rooms(check_in: date = Query(...), check_out: date = Query(...), db: Session = Depends(get_db)):
-    rooms = db.query(Room).all()
-    out = []
-
-    for r in rooms:
-        try:
-            price, nights = calculate_price(db=db, room=r, check_in=check_in, check_out=check_out)
-        except Exception:
-            price, nights = r.base_price, 1
-        out.append({
-            "id": r.id,
-            "name": r.name,
-            "room_type": r.room_type,
-            "capacity": r.capacity,
-            "media": r.media,
-            "quote": {"price": price, "nights": nights}
-        })
-    return {"rooms": out}
-
-
-# ---------------- Booking form endpoint (frontend sends form) ----------------
-@app.post("/booking/form")
-def booking_form(form: BookingForm, db: Session = Depends(get_db)):
-    rooms_out: List[Dict[str, Any]] = []
-    rooms = db.query(Room).all()
-    if not rooms:
-        return {"rooms": [], "message": "No rooms found in DB. Seed rooms first."}
-
-    ci = form.check_in
-    co = form.check_out
-    for r in rooms:
-        try:
-            price, nights = calculate_price(db=db, room=r, check_in=ci, check_out=co)
-        except Exception:
-            price, nights = r.base_price, 1
-
-        rooms_out.append({
-            "id": r.id,
-            "name": r.name,
-            "room_type": r.room_type,
-            "capacity": r.capacity,
-            "units": getattr(r, "total_units", None),
-            "media": r.media or [],
-            "price": price,
-            "nights": nights,
-            "base_price": getattr(r, "base_price", None),
-        })
-
-    return {"rooms": rooms_out, "check_in": form.check_in.isoformat(), "check_out": form.check_out.isoformat(), "guests": form.guests, "preferences": form.preferences or "", "whatsapp_number": form.whatsapp_number or ""}
-
-
-# ---------------- Bookings (DB-backed) ----------------
-@app.post("/bookings/stage")
-async def bookings_stage(req: BookingStageReq, email: Optional[str] = Query(None)):
-    db = SessionLocal()
-    try:
-        booking = None
-        try:
-            booking = create_booking_record(
-                db=db,
-                guest_name=req.guest_name,
-                guest_phone=req.guest_phone,
-                room_id=req.room_id,
-                check_in=req.check_in,
-                check_out=req.check_out,
-                price=0,
-                channel='web',
-                channel_user=email
-            )
-        except Exception as e:
-            logger.warning("create_booking_record error: %s", e)
-
-        if booking is None:
-            fallback = Booking(
-                guest_name=req.guest_name,
-                guest_phone=req.guest_phone,
-                room_id=req.room_id,
-                check_in=req.check_in,
-                check_out=req.check_out,
-                price=0,
-                channel='web',
-                channel_user=email
-            )
-            db.add(fallback)
-            db.commit()
-            db.refresh(fallback)
-            booking = fallback
-
-        booking_id = str(getattr(booking, "id"))
-        try:
-            await broker.broadcast("booking_created", {"booking_id": booking_id})
-        except Exception:
-            pass
-
-        return {"booking_id": booking_id}
-    except Exception as e:
-        db.rollback()
-        raise HTTPException(status_code=500, detail=f"Failed to stage booking: {e}")
-    finally:
-        db.close()
-
-@app.post("/bookings/confirm")
-async def bookings_confirm(req: BookingConfirmReq):
-    db = SessionLocal()
-    try:
-        booking = None
-        try:
-            booking = db.query(Booking).filter(Booking.id == int(req.booking_id)).first()
-        except Exception:
-            booking = db.query(Booking).filter(Booking.id == req.booking_id).first()
-
-        if not booking:
-            raise HTTPException(status_code=404, detail="Staged booking not found")
-
-        canonical_booking_id = str(getattr(booking, "id"))
-        stripe_sess = create_checkout_session(session_id=canonical_booking_id, room_type=req.room_type, nights=req.nights, cash=req.cash, extras=req.extras)
-
-        if isinstance(stripe_sess, dict):
-            stripe_id = stripe_sess.get("id")
-            checkout_url = web._checkout_url_from_session(stripe_sess)
-        else:
-            stripe_id = getattr(stripe_sess, "id", None)
-            checkout_url = web._checkout_url_from_session(stripe_sess)
-
-        if hasattr(booking, "stripe_session_id"):
-            booking.stripe_session_id = stripe_id
-        if hasattr(booking, "checkout_url"):
-            booking.checkout_url = checkout_url
-
-        db.add(booking)
-        db.commit()
-        db.refresh(booking)
-
-        try:
-            qr_local, qr_public = web.save_qr_to_static(checkout_url, f"checkout_{canonical_booking_id}.png")
-        except Exception:
-            qr_public = None
-
-        try:
-            await broker.broadcast("booking_confirmed", {
-                "booking_id": canonical_booking_id,
-                "stripe_session_id": stripe_id,
-                "checkout_url": checkout_url
-            })
-        except Exception:
-            pass
-
-        return {"checkout_url": checkout_url, "qr_url": qr_public, "stripe_session_id": stripe_id}
-    except HTTPException:
-        raise
-    except Exception as e:
-        db.rollback()
-        raise HTTPException(status_code=500, detail=f"Failed to confirm booking: {e}")
-    finally:
-        db.close()
-
-@app.get("/bookings/{booking_id}")
-def get_booking_db(booking_id: str):
-    db = SessionLocal()
-    try:
-        # try numeric id first
-        try:
-            b = db.query(Booking).filter(Booking.id == int(booking_id)).first()
-        except Exception:
-            b = db.query(Booking).filter(Booking.id == booking_id).first()
-
-        if not b:
-            raise HTTPException(status_code=404, detail="Booking not found")
-
-        return {
-            "booking_id": b.id,
-            "guest_name": getattr(b, "guest_name", None),
-            "guest_phone": getattr(b, "guest_phone", None),
-            "room_id": getattr(b, "room_id", None),
-            "check_in": getattr(b, "check_in", None).isoformat() if getattr(b, "check_in", None) else None,
-            "check_out": getattr(b, "check_out", None).isoformat() if getattr(b, "check_out", None) else None,
-            "price": getattr(b, "price", None),
-            "status": getattr(b, "status", None).name if getattr(b, "status", None) else None,
-            "stripe_session_id": getattr(b, "stripe_session_id", None) if hasattr(b, "stripe_session_id") else None,
-        }
-    finally:
-        db.close()
-
-@app.get("/bookings/all_db")
-def get_all_bookings_db():
-    db = SessionLocal()
-    try:
-        rows = db.query(Booking).all()
-        out = []
-        for b in rows:
-            out.append({
-                "id": getattr(b, "id", None),
-                "guest_name": getattr(b, "guest_name", None),
-                "room_id": getattr(b, "room_id", None),
-                "check_in": getattr(b, "check_in", None).isoformat() if getattr(b, "check_in", None) else None,
-                "check_out": getattr(b, "check_out", None).isoformat() if getattr(b, "check_out", None) else None,
-                "price": getattr(b, "price", None),
-                "status": getattr(b, "status", None).name if getattr(b, "status", None) else None,
-            })
-        return {"bookings": out}
-    finally:
-        db.close()
-
-@app.patch("/bookings/{booking_id}/update")
-def bookings_update(booking_id: str, patch: DBBookingUpdate):
-    db = SessionLocal()
-    try:
-        try:
-            b = db.query(Booking).filter(Booking.id == int(booking_id)).first()
-        except Exception:
-            b = db.query(Booking).filter(Booking.id == booking_id).first()
-
-        if not b:
-            raise HTTPException(status_code=404, detail="Booking not found")
-
-        for field, val in patch.dict(exclude_unset=True).items():
-            if field == "status" and val:
-                # try to set Enum safely, attempt different casing strategies
-                try:
-                    if isinstance(val, str) and val.upper() in BookingStatus.__members__:
-                        setattr(b, "status", BookingStatus[val.upper()])
-                    elif hasattr(BookingStatus, val):
-                        setattr(b, "status", getattr(BookingStatus, val))
-                    else:
-                        # fallback: leave as-is or raise
-                        raise ValueError(f"Invalid status: {val}")
-                except Exception as e:
-                    raise HTTPException(status_code=400, detail=str(e))
-            else:
-                setattr(b, field, val)
-
-        db.add(b)
-        db.commit(); db.refresh(b)
-
-        # broadcast update (best-effort)
-        try:
-            asyncio.create_task(broker.broadcast("booking_updated", {
-                "id": getattr(b, "id"),
-                "guest_name": getattr(b, "guest_name", None),
-                "status": getattr(b, "status", None).name if getattr(b, "status", None) else None,
-                "price": getattr(b, "price", None),
-            }))
-        except RuntimeError:
-            pass
-
-        return {"ok": True}
-    finally:
-        db.close()
-
-
-# ---------------- Billing ----------------
-@app.get("/billing/due-items")
-def billing_due(email: str):
-    details, total = web.get_due_items_details(email)
-    return {"items": details, "total": total}
-
-@app.post("/billing/checkout")
-def billing_checkout(amount: int):
-    sess = create_pending_checkout_session(amount)
-    url = web._checkout_url_from_session(sess)
-    return {"checkout_url": url}
-
-
-# ---------------- ID-proof upload ----------------
-@app.post("/users/{email}/id_proof")
-def id_proof(email: str, file: UploadFile = File(...)):
-    url = web.save_id_proof(email, file)
-    USER_DB_PATH = "illora_user_gate.db"
-    web.set_id_proof(email, 1, USER_DB_PATH)
-    return {"url": url}
-
-
-@app.get("/health")
-def health():
-    return {"ok": True, "timestamp": datetime.utcnow().isoformat()}
 
 # ------------------------- Run locally -------------------------
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=int(os.environ.get("PORT", 8000)), reload=True)
+    uvicorn.run("main_final:app", host="0.0.0.0", port=int(os.environ.get("PORT", 8002)), reload=True)
